@@ -1,0 +1,25 @@
+connection_timeout: 10.0
+action_timeout: 30.0
+state_timeout: 0.5
+command_timeout: 0.5
+
+# Parameters for the robot body motion control
+body_pos_tolerance: 0.1
+body_rpy_tolerance: 0.35
+time_in_tolerance: 1.0
+
+initialize_height: 0.325
+
+#Parameters for the leg motion control
+leg_pos_tolerance: 0.1
+leg_rpy_tolerance: 0.35
+initialize_x: 0
+initialize_y: 0
+initialize_z: 0
+
+#Limitations
+leg_limits:
+  force: #N
+    z:
+      min: 0
+      max: 30

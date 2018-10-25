@@ -1,0 +1,16 @@
+<launch>
+    <param name="robot_description" command="cat $(find ardent)/robot/urdf/ardent.urdf" />
+    <rosparam file="$(find ardent)/robot/params/controller.yaml" command="load"/>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
+    output="screen" ns="/ardent" args="joint_state_controller j_c1_rf_position_controller j_c1_rm_position_controller j_c1_rr_position_controller j_c1_lf_position_controller j_c1_lm_position_controller j_c1_lr_position_controller j_femur_rf_position_controller j_femur_rm_position_controller j_femur_rr_position_controller j_femur_lf_position_controller j_femur_lm_position_controller j_femur_lr_position_controller j_tibia_rf_position_controller j_tibia_rm_position_controller j_tibia_rr_position_controller j_tibia_lf_position_controller j_tibia_lm_position_controller j_tibia_lr_position_controller"/>
+    
+    <!-- 
+    <rosparam file="$(find ardent)/params/params.yaml"/>
+    <rosparam file="${find ardent)/params/controller.yaml"> -->
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+        <remap from="/joint_states" to="/ardent/joint_states" />
+    </node>
+</launch>
