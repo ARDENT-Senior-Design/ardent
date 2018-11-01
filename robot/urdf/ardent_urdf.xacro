@@ -14,11 +14,7 @@
 <xacro:macro name="ardent" params="parent *origin">
 
 
-    <joint name="j_ardent_attachment" type="fixed">
-      <parent link="${parent}"/>
-      <child link="MP_BODY"/>
-      <xacro:insert_block name="origin" />
-    </joint>
+   
     
     <link name="MP_BODY">
       <inertial>
@@ -46,6 +42,13 @@
         </geometry>
       </collision>
     </link>
+
+
+    <joint name="j_ardent_attachment" type="fixed">
+      <parent link="${parent}"/>
+      <child link="MP_BODY"/>
+      <xacro:insert_block name="origin" />
+    </joint>
 
     <!-- Build Leg -->
     <xacro:leg_l xyz="0.175 -0.1  0.001116"  rpy="0 0 5.475" suffix="rf"/>
