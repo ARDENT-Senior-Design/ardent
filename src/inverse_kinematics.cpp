@@ -1,9 +1,14 @@
-#include <../include/inverse_kinematics.h>
+#include <../include/kinematics.h>
 
 
 namespace ardent{
-    
-        ArdentKinematics::Vector3d ArdentKinematics::GetJointAngles(Vector3d& ee_pos)
+
+        ArdentLegKinematics::ArdentLegKinematics(ArdentLegID id)
+        {
+            leg_id = id;
+        }
+
+        ArdentLegKinematics::Vector3d ArdentLegKinematics::GetJointAngles(Vector3d& ee_pos) 
         {
             Eigen::Matrix4d h;  //transformation matrix for the joint
             Vector3d qr = ee_pos;
@@ -13,14 +18,45 @@ namespace ardent{
             //Enforce Limits
         }
 
-        ArdentKinematics::Vector3d ArdentKinematics::GetJointPosition(ArdentJointID& q)
-        {
-
-        }
-
-        ArdentKinematics::Vector3d ArdentKinematics::ForceJointConstraints(double& qq, ArdentJointID id)
+        ArdentLegKinematics::Vector3d ArdentLegKinematics::GetJointPosition(ArdentJointID id) 
         {
             
+        }
+
+        ArdentLegKinematics::Vector3d ArdentLegKinematics::GetEndEffectorPosition()
+        {
+            
+        } 
+
+        void ArdentLegKinematics::ForceLegConstraints(double& q, ArdentLegID id)
+        {
+            
+        }
+
+        double ArdentLegKinematics::LegAngle()
+        {
+            switch(leg_id)
+            {
+                case RF:
+                    return 1.0472;
+                break;
+                case RM:
+                    return 0;
+                break;
+                case RR:
+                    return -1.0472;
+                break;
+                case LF:
+                    return 2.0944;
+                break;
+                case LM:
+                    return 3.14;
+                break;
+                case LR:
+                    return 4.18879;
+                break;
+            }
+        
         }
 
 }

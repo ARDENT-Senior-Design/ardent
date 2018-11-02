@@ -12,9 +12,6 @@
 
 
 <xacro:macro name="ardent" params="parent *origin">
-
-
-   
     
     <link name="MP_BODY">
       <inertial>
