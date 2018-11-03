@@ -1,7 +1,8 @@
-#ifndef KINEMATICS_H_
-#define KINEMATICS_H_
+#ifndef LEG_KINEMATICS_H_
+#define LEG_KINEMATICS_H_
 
 #include <eigen3/Eigen/Dense>
+#include <ros/ros.h>
 #include <cmath>
 #include <map>
 namespace ardent{
@@ -14,7 +15,7 @@ namespace ardent{
             /**
              * @brief Default initialize leg lengths with values
              */
-            ArdentLegKinematics(ArdentLegID id);
+            ArdentLegKinematics(ArdentLegID id, double radial_offset);
             virtual ~ArdentLegKinematics() = default;
 
             /**
@@ -46,13 +47,16 @@ namespace ardent{
              * @brief Returns the 0-angle of the leg relative to the IMU direction
              * @param id Leg
              */
-            double LegAngle();
+            double GetLegAngleOffset();
         
         private:
-            Vector3d offset_z = Vector3d(0.1,0.173,0.0); //Distance from center of body to coxa
+            double radial_offset; //Distance from center of body to coxa
             double coxa_length = 0.1; // link length from first motor (j_coxa) to second motor (j_femur)
             double femur_length = 0.25; // link length from second motor (j_femur) to third joint (j_tibia)
             double tibia_length = 0.25; //link length from third motor (j_tibia) to the end effector
+
+            // Angle should be kept track of by encoders, I will try to keep track of them here
+
             ArdentLegID leg_id;
     };
 }

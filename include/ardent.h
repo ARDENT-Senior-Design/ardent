@@ -1,5 +1,9 @@
-#ifndef ROBOT_H_
-#define ROBOT_H_
+#ifndef ARDENT_H_
+#define ARDENT_H_
+
+#include <body_kinematics.h>
+#include <leg_kinematics.h>
+#include <ros/ros.h>
 
 namespace ardent{
 
@@ -9,6 +13,8 @@ namespace ardent{
              * @brief Creates a new ARDENT robot
              */
             ArdentRobot() = default;
+            ~ArdentRobot() = default;
+
         private: 
 
     };
