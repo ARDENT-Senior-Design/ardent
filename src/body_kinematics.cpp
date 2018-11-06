@@ -2,9 +2,9 @@
 
 namespace ardent
 {
-        Eigen::Matrix4d ArdentBodyKinematics::GetLegPosition(ArdentLegID id)
+        Eigen::Matrix4d ArdentBodyKinematics::GetLegPosition(std::string leg_id)
         {
-            double t_d = GetLegAngleOffset(id);
+            double t_d = GetLegAngleOffset(leg_id);
             double t_y = 0; // yaw of the robot
             double t_r = 0; // roll of the robot
             double t_p = 0; // pitch of the robot
@@ -21,29 +21,30 @@ namespace ardent
             return (Tx*Ty*Tz).eval();
         }
 
-        double ArdentBodyKinematics::GetLegAngleOffset(ArdentLegID id)
+        double ArdentBodyKinematics::GetLegAngleOffset(std::string leg_id)
         {
-            switch(id)
-            {
-                case RF:
+            if(leg_id == "rf"){
                     return 1.0472;
-                break;
-                case RM:
-                    return 0;
-                break;
-                case RR:
-                    return -1.0472;
-                break;
-                case LF:
-                    return 2.0944;
-                break;
-                case LM:
-                    return 3.14;
-                break;
-                case LR:
-                    return 4.18879;
-                break;
             }
+            else if(leg_id == "rm"){
+                return 0;
+            }
+            else if(leg_id == "rr"){
+                return -1.0472;
+            }
+            else if(leg_id == "lf"){
+                return 2.0944;
+            }
+            else if(leg_id == "lm"){
+                return 3.14;
+            }
+            else if(leg_id == "lr"){
+                return 4.128879;
+            }
+            else{
+                return 0;
+            }
+            
         }
 
         double ArdentBodyKinematics::GetRadius()

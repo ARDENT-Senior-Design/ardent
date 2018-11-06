@@ -4,6 +4,7 @@
 #include <leg_kinematics.h>
 #include <eigen3/Eigen/Dense>
 #include <ros/ros.h>
+#include <string>
 
 namespace ardent
 {
@@ -24,13 +25,13 @@ namespace ardent
              * @brief The transform to the coxa joint of a leg based on the orientation and size of the body
              * @return The transform from the centroid of the body to the leg location based on the RPY of the robot body and relative leg coordinate
              */
-            Matrix4d GetLegPosition(ArdentLegID id);
+            Matrix4d GetLegPosition(std::string leg_id);
 
              /**
              * @brief Returns the 0-angle of the leg relative to the IMU direction
              * @return The angular offset of the leg regular to the X-axis
              */
-            double GetLegAngleOffset(ArdentLegID id);
+            double GetLegAngleOffset(std::string leg_id);
 
             /** 
              * @brief Get the radius for the hexagon body

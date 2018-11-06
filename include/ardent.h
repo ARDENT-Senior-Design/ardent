@@ -14,7 +14,7 @@ namespace ardent{
              */
             ArdentRobot() = default;
             ~ArdentRobot() = default;
-
+            
         private: 
 
     };

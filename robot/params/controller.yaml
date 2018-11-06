@@ -4,34 +4,34 @@ ardent:
       type: joint_state_controller/JointStateController
       publish_rate: 50  
   #--- Effort controller
-  j_c1_rf_position_controller:
+  j_coxa_rf_position_controller:
     type: effort_controllers/JointPositionController
-    joint: j_c1_rf
+    joint: j_coxa_rf
     pid: {p: 100.0, i: 0.1, d: 1.0}
 
-  j_c1_rm_position_controller:
+  j_coxa_rm_position_controller:
     type: effort_controllers/JointPositionController
-    joint: j_c1_rm
+    joint: j_coxa_rm
     pid: {p: 100.0, i: 0.1, d: 1.0}
 
-  j_c1_rr_position_controller:
+  j_coxa_rr_position_controller:
     type: effort_controllers/JointPositionController
-    joint: j_c1_rr
+    joint: j_coxa_rr
     pid: {p: 100.0, i: 0.1, d: 1.0}
 
-  j_c1_lf_position_controller:
+  j_coxa_lf_position_controller:
     type: effort_controllers/JointPositionController
-    joint: j_c1_lf
+    joint: j_coxa_lf
     pid: {p: 100.0, i: 0.1, d: 1.0}
 
-  j_c1_lm_position_controller:
+  j_coxa_lm_position_controller:
     type: effort_controllers/JointPositionController
-    joint: j_c1_lm
+    joint: j_coxa_lm
     pid: {p: 100.0, i: 0.1, d: 1.0}
 
-  j_c1_lr_position_controller:
+  j_coxa_lr_position_controller:
     type: effort_controllers/JointPositionController
-    joint: j_c1_lr
+    joint: j_coxa_lr
     pid: {p: 100.0, i: 0.1, d: 1.0}
   
   j_femur_rf_position_controller:
@@ -97,12 +97,12 @@ ardent:
   # leg_controller:
   #   type: position_controllers/JointEffortController
   #   joints:
-  #     - j_c1_rf
-  #     - j_c1_rm
-  #     - j_c1_rr
-  #     - j_c1_lf
-  #     - j_c1_lm
-  #     - j_c1_lr
+  #     - j_coxa_rf
+  #     - j_coxa_rm
+  #     - j_coxa_rr
+  #     - j_coxa_lf
+  #     - j_coxa_lm
+  #     - j_coxa_lr
   #     - j_femur_rf
   #     - j_femur_rm
   #     - j_femur_rr
@@ -116,9 +116,9 @@ ardent:
   #     - j_tibia_lm
   #     - j_tibia_lr
   #   constraints:
-  #     j_c1_rf:
+  #     j_coxa_rf:
   #       goal: &goal_pos_constraint 0.1
-  #     j_c1_rm:
+  #     j_coxa_rm:
   #       goal: *goal_pos_constraint
 
   #   pid:

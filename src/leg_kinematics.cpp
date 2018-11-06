@@ -3,23 +3,54 @@
 
 namespace ardent{
 
-        ArdentLegKinematics::ArdentLegKinematics(ArdentLegID id, double body_radius)
+        ArdentLegKinematics::ArdentLegKinematics(std::string new_leg_id, double body_radius)
         {
-            leg_id = id;
+            leg_id = new_leg_id;
             radial_offset = body_radius;
+            ros::Publisher femur_rf_pub = nh.advertise<std_msgs::Float64>("/ardent/j_femur_"+leg_id+"_position_controller/command",1000);
+            ros::Publisher tibia_rf_pub = nh.advertise<std_msgs::Float64>("/ardent/j_tibia_"+leg_id+"_position_controller/command",1000);
+            ros::Publisher coxa_rf_pub = nh.advertise<std_msgs::Float64>("/ardent/j_coxa_"+leg_id+"_position_controller/command",1000);
         }
 
         Eigen::Vector3d ArdentLegKinematics::GetJointAngles(Vector3d& ee_pos) 
         {
             Eigen::Matrix4d h;  //transformation matrix for the joint
-            Vector3d p_ee = (ee_pos.x, ee_pos.y, -ee_pos.z);
-            
+            Eigen::Vector3d joint_angles;   //list of coxa, femur, and tibia joints
+
+            double a_12 = coxa_length;
+            double a_23  = femur_length;
+            double a_3e = tibia_length;
+
+            Eigen::Vector3d p_ee = (ee_pos.x, ee_pos.y, -ee_pos.z);    //position of the end effector
+            joint_angles.x = atan2(p_ee.y,p_ee.x);    // calculate the angle of the coxa joint
+
+            p_ee = p_ee-Vector3d(a_12,0,0); //shift over to the femur joint
+            double p_2e = pow(p_ee.x,2)+pow(p_ee.z,2); //calculate the hypotenuse^2 from the femur joint to end effector 
             // Transformation matrix for all joints
-            
+            double alpha = atan2(-p_ee.z,p_ee.x);   //part of the b1 angle from the LoC
+            double num = (pow(a_23,2)+p_2e-pow(a_3e,2))/(2.0*a_23*sqrt(p_2e));  //LoC for femur angle
+            if(num>1){  //limit to pi
+                num=1;
+            }
+            if(num<-1){
+                num=-1;
+            }
+            double beta = acos(num);    //other part of the triangle
+            joint_angles.y = beta+alpha; //angle of the 
+
+            num = (pow(a_3e,2)+pow(a_23,2)-p_2e)/(2.0*a_23*a_3e);
+             if(num>1){  //limit to pi
+                num=1;
+            }
+            if(num<-1){
+                num=-1;
+            }
+            joint_angles.z = acos(num)-M_PI;
+            return joint_angles;
             //Enforce Limits
         }
 
-        Eigen::Vector3d ArdentLegKinematics::GetJointPosition(ArdentJointID id) 
+        Eigen::Vector3d ArdentLegKinematics::GetJointPosition(std::string joint_id) 
         {
 
         }
@@ -49,7 +80,7 @@ namespace ardent{
             return p_0e;
         } 
 
-        void ArdentLegKinematics::ForceLegConstraints(double& q, ArdentJointID id)
+        void ArdentLegKinematics::ForceLegConstraints(double& q, std::string joint_id)
         {
             
         }

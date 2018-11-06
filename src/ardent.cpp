@@ -6,14 +6,15 @@ namespace ardent
     {
         ArdentBodyKinematics body;
         std::vector <ArdentLegKinematics> leg(6); //initialize 6 robot legs
-        leg.push_back(ArdentLegKinematics(RF, body.GetRadius()));
-        leg.push_back(ArdentLegKinematics(RM, body.GetRadius()));
-        leg.push_back(ArdentLegKinematics(RR, body.GetRadius()));
-        leg.push_back(ArdentLegKinematics(LF, body.GetRadius()));
-        leg.push_back(ArdentLegKinematics(LM, body.GetRadius()));
-        leg.push_back(ArdentLegKinematics(LR, body.GetRadius()));
+        leg.push_back(ArdentLegKinematics("rf", body.GetRadius()));
+        leg.push_back(ArdentLegKinematics("rm", body.GetRadius()));
+        leg.push_back(ArdentLegKinematics("rr", body.GetRadius()));
+        leg.push_back(ArdentLegKinematics("lf", body.GetRadius()));
+        leg.push_back(ArdentLegKinematics("lm", body.GetRadius()));
+        leg.push_back(ArdentLegKinematics("lr", body.GetRadius()));
         //initialize the legs based on the body offset
     }
 
+    
 
 }

@@ -3,8 +3,11 @@
 
 #include <eigen3/Eigen/Dense>
 #include <ros/ros.h>
+#include "geometry_msgs/Pose.h"
+#include "std_msgs/Float64.h"
 #include <cmath>
 #include <map>
+#include <string>
 namespace ardent{
 
     typedef enum ArdentJointID {COXA, FEMUR, TIBIA, JointCount};    // specify which quaternion point to look at
@@ -15,8 +18,10 @@ namespace ardent{
             using Vector3d = Eigen::Vector3d;
             /**
              * @brief Default initialize leg lengths with values
+             * @param led_id is one of the legs COXA, FEMUR, TIBIA
+             * @param radial_offset is the distance from the origin to the leg position
              */
-            ArdentLegKinematics(ArdentLegID id, double radial_offset);
+            ArdentLegKinematics(std::string leg_id, double radial_offset);
             virtual ~ArdentLegKinematics() = default;
 
             /**
@@ -31,7 +36,7 @@ namespace ardent{
              * @param id Joint id for the position
              * @return The cartesian position of the joint relative to the coxa, where 
              */
-            Vector3d GetJointPosition(ArdentJointID id);
+            Vector3d GetJointPosition(std::string joint_id);
 
             /**
              * @brief Returns the cartesian position of an end effector
@@ -45,7 +50,7 @@ namespace ardent{
              * @param q[in/out] Current joint angle that will get adapted if out of range
              * @param joint Which joint (COXA, FEMUR, TIBIA) the joint represents 
              */
-            void ForceLegConstraints(double& q, ArdentJointID id);
+            void ForceLegConstraints(double& q, std::string joint_id);
             
            
         
@@ -56,7 +61,8 @@ namespace ardent{
             double tibia_length = 0.25; //link length from third motor (j_tibia) to the end effector
 
             // Angle should be kept track of by encoders, I will try to keep track of them here
-            ArdentLegID leg_id;
+            std::string leg_id;
+            ros::NodeHandle nh;
     };
 }
 
