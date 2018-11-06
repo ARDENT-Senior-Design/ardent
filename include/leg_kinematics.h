@@ -9,6 +9,7 @@ namespace ardent{
 
     typedef enum ArdentJointID {COXA, FEMUR, TIBIA, JointCount};    // specify which quaternion point to look at
     typedef enum ArdentLegID {RF, RM, RR, LF, LM, LR};  //specify which leg being coordinated
+
     class ArdentLegKinematics{
         public:
             using Vector3d = Eigen::Vector3d;
@@ -19,35 +20,34 @@ namespace ardent{
             virtual ~ArdentLegKinematics() = default;
 
             /**
-             * @brief Return the joint angles to reach cartesian position in a vector array relative to robot center. In order, the vector array of each angle is: Coxa, femur, tibia
+             * @brief Gets the leg angles based on an end-effector position. 
              * @param ee_pos End Effector position xyz relative to frame relative to j_c1_rf
+             * @return Get the joint angles to reach cartesian position in a vector array relative to robot center. In order: the vector array of each angle is: Coxa, femur, tibia
              */ 
             Vector3d GetJointAngles(Vector3d& ee_pos);
             
             /**
-             * @brief Return the cartesian position
+             * @brief Get the position of a specific joint in the leg
              * @param id Joint id for the position
+             * @return The cartesian position of the joint relative to the coxa, where 
              */
             Vector3d GetJointPosition(ArdentJointID id);
 
             /**
              * @brief Returns the cartesian position of an end effector
              * @param id Leg id for which specific leg of the six
+             * @return The Cartesian position of the leg end-effector relative to the coxa
              */
             Vector3d GetEndEffectorPosition();
 
             /**
              * @brief Restirct the joint angles to stay within reasonable limits
              * @param q[in/out] Current joint angle that will get adapted if out of range
-             * @param joint Which joint (COXA, FEMUR, TIBIA) the joint represents
+             * @param joint Which joint (COXA, FEMUR, TIBIA) the joint represents 
              */
-            void ForceLegConstraints(double& q, ArdentLegID id);
+            void ForceLegConstraints(double& q, ArdentJointID id);
             
-            /**
-             * @brief Returns the 0-angle of the leg relative to the IMU direction
-             * @param id Leg
-             */
-            double GetLegAngleOffset();
+           
         
         private:
             double radial_offset; //Distance from center of body to coxa
@@ -56,7 +56,6 @@ namespace ardent{
             double tibia_length = 0.25; //link length from third motor (j_tibia) to the end effector
 
             // Angle should be kept track of by encoders, I will try to keep track of them here
-
             ArdentLegID leg_id;
     };
 }

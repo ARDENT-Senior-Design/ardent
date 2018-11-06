@@ -9,22 +9,22 @@ namespace ardent{
             radial_offset = body_radius;
         }
 
-        ArdentLegKinematics::Vector3d ArdentLegKinematics::GetJointAngles(Vector3d& ee_pos) 
+        Eigen::Vector3d ArdentLegKinematics::GetJointAngles(Vector3d& ee_pos) 
         {
             Eigen::Matrix4d h;  //transformation matrix for the joint
-            Vector3d qr = ee_pos;
+            Vector3d p_ee = (ee_pos.x, ee_pos.y, -ee_pos.z);
             
             // Transformation matrix for all joints
             
             //Enforce Limits
         }
 
-        ArdentLegKinematics::Vector3d ArdentLegKinematics::GetJointPosition(ArdentJointID id) 
+        Eigen::Vector3d ArdentLegKinematics::GetJointPosition(ArdentJointID id) 
         {
-            double t_d = GetLegAngleOffset();    //radial adjustment of the leg
+
         }
 
-        ArdentLegKinematics::Vector3d ArdentLegKinematics::GetEndEffectorPosition()
+        Eigen::Vector3d ArdentLegKinematics::GetEndEffectorPosition()
         {
             double a_12 = coxa_length;
             double a_23  = femur_length;
@@ -41,43 +41,17 @@ namespace ardent{
             Eigen::Matrix4d T_23;   //transformation about the tibia joint in the relative z-axis
             T_23 << cos(g), -sin(g), 0, a_23, sin(g), cos(g), 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1;
             
-            Eigen::Vector4d P_3e = Eigen::Vector4d(a_3e, 0, 0, 1);  //position of the leg end-effector relative to the tibia joint
+            Eigen::Vector4d p_3e = Eigen::Vector4d(a_3e, 0, 0, 1);  //position of the leg end-effector relative to the tibia joint
             
             Eigen::Matrix4d T_03 = (T_01*T_12*T_23).eval(); //transform from the coxa joint to the tibia
 
-            Eigen::Vector4d P_0e = (T_03*P_3e).eval();  //position of the end effector relative to the coxa joint
-            return P_0e;
+            Eigen::Vector4d p_0e = (T_03*p_3e).eval();  //position of the end effector relative to the coxa joint
+            return p_0e;
         } 
 
-        void ArdentLegKinematics::ForceLegConstraints(double& q, ArdentLegID id)
+        void ArdentLegKinematics::ForceLegConstraints(double& q, ArdentJointID id)
         {
             
-        }
-
-        double ArdentLegKinematics::GetLegAngleOffset()
-        {
-            switch(leg_id)
-            {
-                case RF:
-                    return 1.0472;
-                break;
-                case RM:
-                    return 0;
-                break;
-                case RR:
-                    return -1.0472;
-                break;
-                case LF:
-                    return 2.0944;
-                break;
-                case LM:
-                    return 3.14;
-                break;
-                case LR:
-                    return 4.18879;
-                break;
-            }
-        
         }
 
 }
