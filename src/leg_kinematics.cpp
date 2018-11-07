@@ -7,9 +7,23 @@ namespace ardent{
         {
             leg_id = new_leg_id;
             radial_offset = body_radius;
-            ros::Publisher femur_rf_pub = nh.advertise<std_msgs::Float64>("/ardent/j_femur_"+leg_id+"_position_controller/command",1000);
-            ros::Publisher tibia_rf_pub = nh.advertise<std_msgs::Float64>("/ardent/j_tibia_"+leg_id+"_position_controller/command",1000);
-            ros::Publisher coxa_rf_pub = nh.advertise<std_msgs::Float64>("/ardent/j_coxa_"+leg_id+"_position_controller/command",1000);
+            femur_pub = nh.advertise<std_msgs::Float64>("/ardent/j_femur_"+leg_id+"_position_controller/command",1000);
+            tibia_pub = nh.advertise<std_msgs::Float64>("/ardent/j_tibia_"+leg_id+"_position_controller/command",1000);
+            coxa_pub = nh.advertise<std_msgs::Float64>("/ardent/j_coxa_"+leg_id+"_position_controller/command",1000);
+        }
+
+        Eigen::Vector3d ArdentLegKinematics::SetJointAngles(Vector3d& j_pos)
+        {   
+            std_msgs::Float64 coxa_msg;
+            std_msgs::Float64 femur_msg;
+            std_msgs::Float64 tibia_msg;
+            coxa_msg.data = j_pos.x;
+            femur_msg.data = j_pos.y;
+            tibia_msg.data = j_pos.z;
+
+            coxa_pub.publish(coxa_msg);
+            femur_pub.publish(femur_msg);
+            tibia_pub.publish(tibia_msg);
         }
 
         Eigen::Vector3d ArdentLegKinematics::GetJointAngles(Vector3d& ee_pos) 
@@ -46,8 +60,11 @@ namespace ardent{
                 num=-1;
             }
             joint_angles.z = acos(num)-M_PI;
-            return joint_angles;
+            
             //Enforce Limits
+            
+            
+            return joint_angles;
         }
 
         Eigen::Vector3d ArdentLegKinematics::GetJointPosition(std::string joint_id) 
@@ -82,7 +99,29 @@ namespace ardent{
 
         void ArdentLegKinematics::ForceLegConstraints(double& q, std::string joint_id)
         {
-            
+            const static double coxa_min = -60;
+            const static double coxa_max = 60;
+
+            const static double femur_min = -120;
+            const static double femur_max = 120;
+
+            const static double tibia_min = -120;
+            const static double tibia_max = 120;
+
+            static const std::map<std::string, double> min_range{   //reduce joint angles
+                {"coxa", M_PI*coxa_min/180},
+                {"femur", M_PI*femur_min/180},
+                {"tibia", M_PI*tibia_min/180}
+            };
+
+            static const std::map<std::string, double> max_range{   //reduce joint angles
+                {"coxa", M_PI*coxa_max/180},
+                {"femur", M_PI*femur_max/180},
+                {"tibia", M_PI*tibia_max/180}
+            };
+
+            q = q > max_range.at(joint_id) ? max_range.at(joint_id) : q;
+            q = q < min_range.at(joint_id) ? min_range.at(joint_id) : q;
         }
 
 }

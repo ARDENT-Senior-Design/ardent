@@ -24,7 +24,7 @@ namespace ardent
         double ArdentBodyKinematics::GetLegAngleOffset(std::string leg_id)
         {
             if(leg_id == "rf"){
-                    return 1.0472;
+                return 1.0472;
             }
             else if(leg_id == "rm"){
                 return 0;

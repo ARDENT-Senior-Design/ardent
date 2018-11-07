@@ -32,6 +32,12 @@ namespace ardent{
             Vector3d GetJointAngles(Vector3d& ee_pos);
             
             /**
+             * @brief Publishes positions to the coxa, femur, and tibia joint controllers
+             * @param j_pos A vector that contains the target angular position of the coxa, femur, and tibia
+             * */
+            Vector3d SetJointAngles(Vector3d& j_pos);
+
+            /**
              * @brief Get the position of a specific joint in the leg
              * @param id Joint id for the position
              * @return The cartesian position of the joint relative to the coxa, where 
@@ -63,6 +69,9 @@ namespace ardent{
             // Angle should be kept track of by encoders, I will try to keep track of them here
             std::string leg_id;
             ros::NodeHandle nh;
+            ros::Publisher coxa_pub;
+            ros::Publisher femur_pub;
+            ros::Publisher tibia_pub;
     };
 }
 
