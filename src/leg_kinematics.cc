@@ -1,4 +1,4 @@
-#include <../include/leg_kinematics.h>
+#include "../include/leg_kinematics.h"
 
 
 namespace ardent{
@@ -12,14 +12,14 @@ namespace ardent{
             coxa_pub = nh.advertise<std_msgs::Float64>("/ardent/j_coxa_"+leg_id+"_position_controller/command",1000);
         }
 
-        Eigen::Vector3d ArdentLegKinematics::SetJointAngles(Vector3d& j_pos)
+        void ArdentLegKinematics::PublishJointAngles(Vector3d& j_pos)
         {   
             std_msgs::Float64 coxa_msg;
             std_msgs::Float64 femur_msg;
             std_msgs::Float64 tibia_msg;
-            coxa_msg.data = j_pos.x;
-            femur_msg.data = j_pos.y;
-            tibia_msg.data = j_pos.z;
+            coxa_msg.data = (float)j_pos.x();
+            femur_msg.data = (float)j_pos.y();
+            tibia_msg.data = (float)j_pos.z();
 
             coxa_pub.publish(coxa_msg);
             femur_pub.publish(femur_msg);
@@ -35,13 +35,13 @@ namespace ardent{
             double a_23  = femur_length;
             double a_3e = tibia_length;
 
-            Eigen::Vector3d p_ee = (ee_pos.x, ee_pos.y, -ee_pos.z);    //position of the end effector
-            joint_angles.x = atan2(p_ee.y,p_ee.x);    // calculate the angle of the coxa joint
+            Eigen::Vector3d p_ee = Eigen::Vector3d(ee_pos.x(), ee_pos.y(), -ee_pos.z());    //position of the end effector
+            joint_angles.x() = atan2(p_ee.y(),p_ee.x());    // calculate the angle of the coxa joint
 
             p_ee = p_ee-Vector3d(a_12,0,0); //shift over to the femur joint
-            double p_2e = pow(p_ee.x,2)+pow(p_ee.z,2); //calculate the hypotenuse^2 from the femur joint to end effector 
+            double p_2e = pow(p_ee.x(),2)+pow(p_ee.z(),2); //calculate the hypotenuse^2 from the femur joint to end effector 
             // Transformation matrix for all joints
-            double alpha = atan2(-p_ee.z,p_ee.x);   //part of the b1 angle from the LoC
+            double alpha = atan2(-p_ee.z(),p_ee.x());   //part of the b1 angle from the LoC
             double num = (pow(a_23,2)+p_2e-pow(a_3e,2))/(2.0*a_23*sqrt(p_2e));  //LoC for femur angle
             if(num>1){  //limit to pi
                 num=1;
@@ -50,7 +50,7 @@ namespace ardent{
                 num=-1;
             }
             double beta = acos(num);    //other part of the triangle
-            joint_angles.y = beta+alpha; //angle of the 
+            joint_angles.y() = beta+alpha; //angle of the 
 
             num = (pow(a_3e,2)+pow(a_23,2)-p_2e)/(2.0*a_23*a_3e);
              if(num>1){  //limit to pi
@@ -59,7 +59,7 @@ namespace ardent{
             if(num<-1){
                 num=-1;
             }
-            joint_angles.z = acos(num)-M_PI;
+            joint_angles.z() = acos(num)-M_PI;
             
             //Enforce Limits
             
@@ -93,7 +93,8 @@ namespace ardent{
             
             Eigen::Matrix4d T_03 = (T_01*T_12*T_23).eval(); //transform from the coxa joint to the tibia
 
-            Eigen::Vector4d p_0e = (T_03*p_3e).eval();  //position of the end effector relative to the coxa joint
+            Eigen::Vector4d p_0e4 = (T_03*p_3e).eval();  //position of the end effector relative to the coxa joint
+            Eigen::Vector3d p_0e = Eigen::Vector3d(p_0e4.x(),p_0e4.y(),p_0e4.z());
             return p_0e;
         } 
 

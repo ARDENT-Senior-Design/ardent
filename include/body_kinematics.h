@@ -1,7 +1,6 @@
 #ifndef BODY_KINEMATICS_H_
 #define BODY_KINEMATICS_H_
 
-#include <leg_kinematics.h>
 #include <eigen3/Eigen/Dense>
 #include <ros/ros.h>
 #include <string>

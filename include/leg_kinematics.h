@@ -8,10 +8,7 @@
 #include <cmath>
 #include <map>
 #include <string>
-namespace ardent{
-
-    typedef enum ArdentJointID {COXA, FEMUR, TIBIA, JointCount};    // specify which quaternion point to look at
-    typedef enum ArdentLegID {RF, RM, RR, LF, LM, LR};  //specify which leg being coordinated
+namespace ardent{ 
 
     class ArdentLegKinematics{
         public:
@@ -35,7 +32,7 @@ namespace ardent{
              * @brief Publishes positions to the coxa, femur, and tibia joint controllers
              * @param j_pos A vector that contains the target angular position of the coxa, femur, and tibia
              * */
-            Vector3d SetJointAngles(Vector3d& j_pos);
+            void PublishJointAngles(Vector3d& j_pos);
 
             /**
              * @brief Get the position of a specific joint in the leg
