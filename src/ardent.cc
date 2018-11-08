@@ -15,16 +15,16 @@ namespace ardent
 
     void ArdentRobot::PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos)
     {
-        // static const std::map<std::string, int> leg_map{
-        //     {"rf", 0},
-        //     {"rm", 1},
-        //     {"rr", 2},
-        //     {"lf", 3},
-        //     {"lm", 4},
-        //     {"lr", 5}
-        // };
-        // Eigen::Vector3d joint_angles= leg[leg_map.at(leg_id)].GetJointAngles(ee_pos);
-        // leg[leg_map.at(leg_id)].PublishJointAngles(joint_angles);
+        static const std::map<std::string, int> leg_map{
+            {"rf", 0},
+            {"rm", 1},
+            {"rr", 2},
+            {"lf", 3},
+            {"lm", 4},
+            {"lr", 5}
+        };
+        Eigen::Vector3d joint_angles= leg[leg_map.at(leg_id)].GetJointAngles(ee_pos);
+        leg[leg_map.at(leg_id)].PublishJointAngles(joint_angles);
     }
 
 }

@@ -14,6 +14,7 @@ namespace ardent{
 
         void ArdentLegKinematics::PublishJointAngles(Vector3d& j_pos)
         {   
+            ROS_DEBUG_STREAM("Joint Angles are getting published");
             std_msgs::Float64 coxa_msg;
             std_msgs::Float64 femur_msg;
             std_msgs::Float64 tibia_msg;

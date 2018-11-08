@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ardent::ArdentRobot ardent; 
     
-    Eigen::Vector3d command = Eigen::Vector3d(0.5,0,0.5);
+    Eigen::Vector3d command = Eigen::Vector3d(0,0.0,-0.25); //x -> z, z-> -x
 
     ros::Timer timer = n.createTimer(ros::Duration(1.0), timerCallback);
     float angle = 0;
@@ -22,14 +22,13 @@ int main(int argc, char **argv)
 
     while(ros::ok())
     {
-
+        ROS_DEBUG_STREAM("Loop Running");
         ardent.PublishLegPosition("rm",command);
         ardent.PublishLegPosition("rf",command);
         ardent.PublishLegPosition("rr",command);
         ardent.PublishLegPosition("lm",command);
         ardent.PublishLegPosition("lr",command);
         ardent.PublishLegPosition("lf",command);
-
         ros::spinOnce();
         loop_rate.sleep();
         // angle += increment;
