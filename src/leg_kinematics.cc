@@ -63,7 +63,9 @@ namespace ardent{
             joint_angles.z() = acos(num)-M_PI;
             
             //Enforce Limits
-            
+            ForceLegConstraints(joint_angles.x(),"coxa");
+            ForceLegConstraints(joint_angles.y(),"femur");
+            ForceLegConstraints(joint_angles.z(),"tibia");
             
             return joint_angles;
         }
@@ -104,8 +106,8 @@ namespace ardent{
             const static double coxa_min = -60;
             const static double coxa_max = 60;
 
-            const static double femur_min = -120;
-            const static double femur_max = 120;
+            const static double femur_min = -90;
+            const static double femur_max = 90;
 
             const static double tibia_min = -120;
             const static double tibia_max = 120;
