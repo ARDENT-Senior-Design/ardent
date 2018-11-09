@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ardent::ArdentRobot ardent; 
     
-    Eigen::Vector3d command = Eigen::Vector3d(0,0.0,-0.25); //x -> z, z-> -x
+    Eigen::Vector3d command = Eigen::Vector3d(0.1,0.0,0.25); //x -> z, z-> -x
 
     ros::Timer timer = n.createTimer(ros::Duration(1.0), timerCallback);
     float angle = 0;

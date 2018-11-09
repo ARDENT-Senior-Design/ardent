@@ -30,7 +30,7 @@ namespace ardent{
         Eigen::Vector3d ArdentLegKinematics::GetJointAngles(Vector3d& ee_pos) 
         {
             Eigen::Matrix4d h;  //transformation matrix for the joint
-            Eigen::Vector3d joint_angles;   //list of coxa, femur, and tibia joints
+            Eigen::Vector3d joint_angles;   //list of coxa, femur, and tibia joint angles
 
             double a_12 = coxa_length;
             double a_23  = femur_length;

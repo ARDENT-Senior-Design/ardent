@@ -152,7 +152,7 @@
      <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" />
     </inertial>
     <visual>
-      <origin xyz="0 -0.117 0" rpy="1.57 0 0"  />
+      <origin xyz="0.117 0 0" rpy="1.57 0 1.57"  />
       <geometry>
         <cylinder  radius="0.015" length="0.25" />
         <!-- <box size="0.022 0.25 0.0325" /> -->
@@ -163,7 +163,7 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0 -0.117 0" rpy="1.57 0 0"  />
+      <origin xyz="0.117 0 0" rpy="1.57 0 1.57"  />
       <geometry>
         <cylinder  radius="0.015" length="0.25" />
         <!-- <mesh filename="package://phantomx_description/meshes/tibia_l_coll.STL"  scale="1 1 1"/> -->
