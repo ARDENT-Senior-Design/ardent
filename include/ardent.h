@@ -16,6 +16,9 @@ namespace ardent{
             ~ArdentRobot() = default;
             
             void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
+
+            bool CheckStability();
+
         private: 
 
         ArdentBodyKinematics body;

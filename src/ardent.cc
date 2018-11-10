@@ -27,4 +27,9 @@ namespace ardent
         leg[leg_map.at(leg_id)].PublishJointAngles(joint_angles);
     }
 
+    bool ArdentRobot::CheckStability()
+    {
+        return true;
+    }
+
 }
