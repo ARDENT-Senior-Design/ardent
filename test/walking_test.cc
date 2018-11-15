@@ -2,10 +2,15 @@
 #include "std_msgs/Float64.h"
 #include "../include/ardent.h"
 
-float increment = -0.1;
-float speed = 1;
+float leg_num = -1;
 void timerCallback(const ros::TimerEvent& event){
-    increment *= -1;
+    if(leg_num == 6)
+    {
+        leg_num = 0;
+    }
+    else{
+        leg_num++;
+    }
 }
 
 int main(int argc, char **argv)
@@ -14,7 +19,8 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ardent::ArdentRobot ardent; 
     
-    Eigen::Vector3d command = Eigen::Vector3d(0.1,0.0,0.25); //x -> z, z-> -x
+    Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body
+    Eigen::Vector3d command2 = Eigen::Vector3d(0.1,0.1,0.25);
 
     ros::Timer timer = n.createTimer(ros::Duration(1.0), timerCallback);
     float angle = 0;
@@ -22,16 +28,16 @@ int main(int argc, char **argv)
 
     while(ros::ok())
     {
-        ROS_DEBUG_STREAM("Loop Running");
-        ardent.PublishLegPosition("rm",command);
-        ardent.PublishLegPosition("rf",command);
-        ardent.PublishLegPosition("rr",command);
-        ardent.PublishLegPosition("lm",command);
-        ardent.PublishLegPosition("lr",command);
-        ardent.PublishLegPosition("lf",command);
+        for(int i=0;i<6;i++){
+            if(i == leg_num){
+                ardent.PublishLegPosition(ardent.GetMappedLeg(i),command2);
+            }
+            else{
+                ardent.PublishLegPosition(ardent.GetMappedLeg(i), command1);
+            }
+        }
         ros::spinOnce();
         loop_rate.sleep();
-        // angle += increment;
     }
 
     return 0;

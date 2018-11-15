@@ -17,6 +17,9 @@ namespace ardent{
             
             void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
 
+            std::string GetMappedLeg(int leg_num);
+            int GetMappedLeg(std::string leg_id);
+
             bool CheckStability();
 
         private: 

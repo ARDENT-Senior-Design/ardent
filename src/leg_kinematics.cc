@@ -18,7 +18,12 @@ namespace ardent{
             std_msgs::Float64 coxa_msg;
             std_msgs::Float64 femur_msg;
             std_msgs::Float64 tibia_msg;
-            coxa_msg.data = (float)j_pos.x();
+            if(leg_id == "lf" || leg_id == "lm" || leg_id =="lr"){
+                coxa_msg.data = -(float)j_pos.x();
+            }
+            else{
+                coxa_msg.data = (float)j_pos.x();
+            }
             femur_msg.data = (float)j_pos.y();
             tibia_msg.data = (float)j_pos.z();
 
@@ -109,8 +114,8 @@ namespace ardent{
             const static double femur_min = -90;
             const static double femur_max = 90;
 
-            const static double tibia_min = -120;
-            const static double tibia_max = 120;
+            const static double tibia_min = -160;
+            const static double tibia_max = 160;
 
             static const std::map<std::string, double> min_range{   //reduce joint angles
                 {"coxa", M_PI*coxa_min/180},
