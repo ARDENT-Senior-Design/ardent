@@ -5,6 +5,7 @@ Complete robot package for ARDET
 ## Dependencies
 
 Clone this package into the src of your workspace: https://github.com/dawonn/vectornav
+
 Run the command ` chmod 777 /dev/ttyusb0` so your computer has access to the usb port
 
 ## Launch Files
