@@ -32,9 +32,9 @@ namespace ardent{
     // robot_pub = std::make_shared<robot_state_publisher::RobotStatePublisher>(my_kdl_tree);
     }
 
-    void UrdfVisualizer::RobotSateCallback(const ArdentLegKinematics& leg)
+    void UrdfVisualizer::RobotStateCallback(const ArdentLegKinematics& leg)
     {
-        auto joint_positions = AssignAngleToURDFJoint(leg.joint_state);
+        // auto joint_positions = AssignAngleToURDFJoint(leg.joint_state);
     }
     UrdfVisualizer::urdfNameToJointAngle UrdfVisualizer::AssignAngleToURDFJoint(sensor_msgs::JointState &msg)
     {
