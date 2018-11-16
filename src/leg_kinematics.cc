@@ -7,9 +7,9 @@ namespace ardent{
         {
             leg_id = new_leg_id;
             radial_offset = body_radius;
-            femur_pub = nh.advertise<std_msgs::Float64>("/ardent/j_femur_"+leg_id+"_position_controller/command",1000);
-            tibia_pub = nh.advertise<std_msgs::Float64>("/ardent/j_tibia_"+leg_id+"_position_controller/command",1000);
-            coxa_pub = nh.advertise<std_msgs::Float64>("/ardent/j_coxa_"+leg_id+"_position_controller/command",1000);
+            femur_pub = nh.advertise<std_msgs::Float64>("/j_femur_"+leg_id+"_position_controller/command",1000);
+            tibia_pub = nh.advertise<std_msgs::Float64>("/j_tibia_"+leg_id+"_position_controller/command",1000);
+            coxa_pub = nh.advertise<std_msgs::Float64>("/j_coxa_"+leg_id+"_position_controller/command",1000);
         }
 
         void ArdentLegKinematics::PublishJointAngles(Vector3d& j_pos)

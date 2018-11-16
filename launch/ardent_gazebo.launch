@@ -5,7 +5,7 @@
     </include>
     <include file="$(find ardent)/launch/controller.launch"/> 
     <param name="robot" textfile="$(find ardent)/robot/urdf/ardent.urdf"/>
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find ardent)/robot/urdf/ardent.urdf -urdf -z 0.26 -model ardent"/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find ardent)/robot/urdf/ardent.urdf -urdf -z 0.9 -model ardent"/>
     <node name="walking_test" pkg="ardent" type="walking_test"/>
     <node type="rviz" name="rviz" pkg="rviz" args="-d $(find ardent)/rviz/ardent_rviz.rviz" />
 </launch>

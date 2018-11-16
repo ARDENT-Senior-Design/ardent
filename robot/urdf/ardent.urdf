@@ -90,7 +90,8 @@
     <inertial>
       <origin rpy="0 0 0" xyz="1 0 0"/>
       <mass value="0.0286"/>
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="0 1.57 0" xyz="0.125 0 0"/>
@@ -117,7 +118,8 @@
       <mass value="0.0286"/>
       <!-- g/mm^2 -->
       <!-- <inertia ixx="35572"  ixy="-114256"  ixz="-8584" iyy="756486" iyz="-1714" izz="791714" /> -->
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 1.57" xyz="0.117 0 0"/>
@@ -143,26 +145,27 @@
     <child link="coxa_rf"/>
     <origin rpy="0 0 5.475" xyz="0.175 -0.1  0.001116"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_c2_rf" type="fixed">
     <parent link="coxa_rf"/>
     <child link="c2_rf"/>
     <origin rpy="0 0 0" xyz="0.0135 0 0"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_femur_rf" type="revolute">
     <parent link="c2_rf"/>
     <child link="femur_rf"/>
     <origin rpy=" 1.57 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_tibia_rf" type="revolute">
     <parent link="femur_rf"/>
     <child link="tibia_rf"/>
     <origin rpy="0 0 0" xyz="0.25 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-2.6179939" upper="2.6179939" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <!-- <gazebo reference="$tibia_${suffix}">
         <mu1>1</mu1>
@@ -320,7 +323,8 @@
     <inertial>
       <origin rpy="0 0 0" xyz="1 0 0"/>
       <mass value="0.0286"/>
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="0 1.57 0" xyz="0.125 0 0"/>
@@ -347,7 +351,8 @@
       <mass value="0.0286"/>
       <!-- g/mm^2 -->
       <!-- <inertia ixx="35572"  ixy="-114256"  ixz="-8584" iyy="756486" iyz="-1714" izz="791714" /> -->
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 1.57" xyz="0.117 0 0"/>
@@ -373,26 +378,27 @@
     <child link="coxa_rm"/>
     <origin rpy="0 0 -1.57" xyz="0 -0.2  0.001116"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_c2_rm" type="fixed">
     <parent link="coxa_rm"/>
     <child link="c2_rm"/>
     <origin rpy="0 0 0" xyz="0.0135 0 0"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_femur_rm" type="revolute">
     <parent link="c2_rm"/>
     <child link="femur_rm"/>
     <origin rpy=" 1.57 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_tibia_rm" type="revolute">
     <parent link="femur_rm"/>
     <child link="tibia_rm"/>
     <origin rpy="0 0 0" xyz="0.25 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-2.6179939" upper="2.6179939" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <!-- <gazebo reference="$tibia_${suffix}">
         <mu1>1</mu1>
@@ -550,7 +556,8 @@
     <inertial>
       <origin rpy="0 0 0" xyz="1 0 0"/>
       <mass value="0.0286"/>
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="0 1.57 0" xyz="0.125 0 0"/>
@@ -577,7 +584,8 @@
       <mass value="0.0286"/>
       <!-- g/mm^2 -->
       <!-- <inertia ixx="35572"  ixy="-114256"  ixz="-8584" iyy="756486" iyz="-1714" izz="791714" /> -->
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 1.57" xyz="0.117 0 0"/>
@@ -603,26 +611,27 @@
     <child link="coxa_rr"/>
     <origin rpy="0 0 -2.335" xyz="-0.175 -0.1  0.001116"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_c2_rr" type="fixed">
     <parent link="coxa_rr"/>
     <child link="c2_rr"/>
     <origin rpy="0 0 0" xyz="0.0135 0 0"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_femur_rr" type="revolute">
     <parent link="c2_rr"/>
     <child link="femur_rr"/>
     <origin rpy=" 1.57 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_tibia_rr" type="revolute">
     <parent link="femur_rr"/>
     <child link="tibia_rr"/>
     <origin rpy="0 0 0" xyz="0.25 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-2.6179939" upper="2.6179939" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <!-- <gazebo reference="$tibia_${suffix}">
         <mu1>1</mu1>
@@ -780,7 +789,8 @@
     <inertial>
       <origin rpy="0 0 0" xyz="1 0 0"/>
       <mass value="0.0286"/>
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="0 1.57 0" xyz="0.125 0 0"/>
@@ -807,7 +817,8 @@
       <mass value="0.0286"/>
       <!-- g/mm^2 -->
       <!-- <inertia ixx="35572"  ixy="-114256"  ixz="-8584" iyy="756486" iyz="-1714" izz="791714" /> -->
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 1.57" xyz="0.117 0 0"/>
@@ -833,26 +844,27 @@
     <child link="coxa_lf"/>
     <origin rpy="0 0 0.765" xyz="0.175 0.1  0.001116"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_c2_lf" type="fixed">
     <parent link="coxa_lf"/>
     <child link="c2_lf"/>
     <origin rpy="0 0 0" xyz="0.0135 0 0"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_femur_lf" type="revolute">
     <parent link="c2_lf"/>
     <child link="femur_lf"/>
     <origin rpy=" 1.57 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_tibia_lf" type="revolute">
     <parent link="femur_lf"/>
     <child link="tibia_lf"/>
     <origin rpy="0 0 0" xyz="0.25 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-2.6179939" upper="2.6179939" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <!-- <gazebo reference="$tibia_${suffix}">
         <mu1>1</mu1>
@@ -1010,7 +1022,8 @@
     <inertial>
       <origin rpy="0 0 0" xyz="1 0 0"/>
       <mass value="0.0286"/>
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="0 1.57 0" xyz="0.125 0 0"/>
@@ -1037,7 +1050,8 @@
       <mass value="0.0286"/>
       <!-- g/mm^2 -->
       <!-- <inertia ixx="35572"  ixy="-114256"  ixz="-8584" iyy="756486" iyz="-1714" izz="791714" /> -->
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 1.57" xyz="0.117 0 0"/>
@@ -1063,26 +1077,27 @@
     <child link="coxa_lm"/>
     <origin rpy="0 0 1.57" xyz="0 0.2  0.001116"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_c2_lm" type="fixed">
     <parent link="coxa_lm"/>
     <child link="c2_lm"/>
     <origin rpy="0 0 0" xyz="0.0135 0 0"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_femur_lm" type="revolute">
     <parent link="c2_lm"/>
     <child link="femur_lm"/>
     <origin rpy=" 1.57 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_tibia_lm" type="revolute">
     <parent link="femur_lm"/>
     <child link="tibia_lm"/>
     <origin rpy="0 0 0" xyz="0.25 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-2.6179939" upper="2.6179939" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <!-- <gazebo reference="$tibia_${suffix}">
         <mu1>1</mu1>
@@ -1240,7 +1255,8 @@
     <inertial>
       <origin rpy="0 0 0" xyz="1 0 0"/>
       <mass value="0.0286"/>
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="0 1.57 0" xyz="0.125 0 0"/>
@@ -1267,7 +1283,8 @@
       <mass value="0.0286"/>
       <!-- g/mm^2 -->
       <!-- <inertia ixx="35572"  ixy="-114256"  ixz="-8584" iyy="756486" iyz="-1714" izz="791714" /> -->
-      <inertia ixx="0.000035572" ixy="-0.000114256" ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714"/>
+      <!-- <inertia ixx="0.000035572"  ixy="-0.000114256"  ixz="-0.000008584" iyy="0.000756486" iyz="-0.000001714" izz="0.000791714" /> -->
+      <inertia ixx="0.00059" ixy="-0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059"/>
     </inertial>
     <visual>
       <origin rpy="1.57 0 1.57" xyz="0.117 0 0"/>
@@ -1293,26 +1310,27 @@
     <child link="coxa_lr"/>
     <origin rpy="0 0 2.335" xyz="-0.175 0.1  0.001116"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_c2_lr" type="fixed">
     <parent link="coxa_lr"/>
     <child link="c2_lr"/>
     <origin rpy="0 0 0" xyz="0.0135 0 0"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_femur_lr" type="revolute">
     <parent link="c2_lr"/>
     <child link="femur_lr"/>
     <origin rpy=" 1.57 0 0" xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-3.14" upper="3.14" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <joint name="j_tibia_lr" type="revolute">
     <parent link="femur_lr"/>
     <child link="tibia_lr"/>
     <origin rpy="0 0 0" xyz="0.25 0 0"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-2.6179939" upper="2.6179939" velocity="2"/>
+    <limit effort="30" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <!-- <gazebo reference="$tibia_${suffix}">
         <mu1>1</mu1>
@@ -1420,7 +1438,7 @@
   </gazebo>
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>/ardent</robotNamespace>
+      <!-- <robotNamespace>/ardent</robotNamespace> -->
     </plugin>
   </gazebo>
 </robot>

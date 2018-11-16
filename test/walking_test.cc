@@ -4,12 +4,12 @@
 
 float leg_num = -1;
 void timerCallback(const ros::TimerEvent& event){
-    if(leg_num == 6)
+    if(leg_num >= 6)
     {
         leg_num = 0;
     }
     else{
-        leg_num++;
+        leg_num+=2;
     }
 }
 
@@ -21,9 +21,9 @@ int main(int argc, char **argv)
     //test
     
     Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body
-    Eigen::Vector3d command2 = Eigen::Vector3d(0.1,0.1,0.25);
+    Eigen::Vector3d command2 = Eigen::Vector3d(0.2,0.0,0);
 
-    ros::Timer timer = n.createTimer(ros::Duration(1.0), timerCallback);
+    ros::Timer timer = n.createTimer(ros::Duration(2.0), timerCallback);
     float angle = 0;
     ros::Rate loop_rate(10);
 

@@ -7,6 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /Grid1/Offset1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 629
   - Class: rviz/Selection
@@ -61,18 +63,6 @@ Visualization Manager:
           Value: true
         base_link:
           Value: true
-        c1_lf:
-          Value: true
-        c1_lm:
-          Value: true
-        c1_lr:
-          Value: true
-        c1_rf:
-          Value: true
-        c1_rm:
-          Value: true
-        c1_rr:
-          Value: true
         c2_lf:
           Value: true
         c2_lm:
@@ -84,6 +74,18 @@ Visualization Manager:
         c2_rm:
           Value: true
         c2_rr:
+          Value: true
+        coxa_lf:
+          Value: true
+        coxa_lm:
+          Value: true
+        coxa_lr:
+          Value: true
+        coxa_rf:
+          Value: true
+        coxa_rm:
+          Value: true
+        coxa_rr:
           Value: true
         femur_lf:
           Value: true
@@ -111,44 +113,93 @@ Visualization Manager:
           Value: true
       Marker Scale: 1
       Name: TF
-      Show Arrows: false
+      Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
         base_link:
           MP_BODY:
-            c1_lf:
+            coxa_lf:
               c2_lf:
                 femur_lf:
                   tibia_lf:
                     {}
-            c1_lm:
+            coxa_lm:
               c2_lm:
                 femur_lm:
                   tibia_lm:
                     {}
-            c1_lr:
+            coxa_lr:
               c2_lr:
                 femur_lr:
                   tibia_lr:
                     {}
-            c1_rf:
+            coxa_rf:
               c2_rf:
                 femur_rf:
                   tibia_rf:
                     {}
-            c1_rm:
+            coxa_rm:
               c2_rm:
                 femur_rm:
                   tibia_rm:
                     {}
-            c1_rr:
+            coxa_rr:
               c2_rr:
                 femur_rr:
                   tibia_rr:
                     {}
       Update Interval: 0
       Value: true
+    - Alpha: 1
+      Class: rviz/Effort
+      Enabled: true
+      History Length: 1
+      Joints:
+        {}
+      Name: Effort
+      Robot Description: robot_description
+      Scale: 1
+      Topic: ""
+      Unreliable: false
+      Value: true
+      Width: 0.0199999996
+      j_coxa_lf:
+        Value: true
+      j_coxa_lm:
+        Value: true
+      j_coxa_lr:
+        Value: true
+      j_coxa_rf:
+        Value: true
+      j_coxa_rm:
+        Value: true
+      j_coxa_rr:
+        Value: true
+      j_femur_lf:
+        Value: true
+      j_femur_lm:
+        Value: true
+      j_femur_lr:
+        Value: true
+      j_femur_rf:
+        Value: true
+      j_femur_rm:
+        Value: true
+      j_femur_rr:
+        Value: true
+      j_tibia_lf:
+        Value: true
+      j_tibia_lm:
+        Value: true
+      j_tibia_lr:
+        Value: true
+      j_tibia_rf:
+        Value: true
+      j_tibia_rm:
+        Value: true
+      j_tibia_rr:
+        Value: true
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -168,36 +219,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        c1_lf:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        c1_lm:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        c1_lr:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        c1_rf:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        c1_rm:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        c1_rr:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         c2_lf:
           Alpha: 1
           Show Axes: false
@@ -224,6 +245,36 @@ Visualization Manager:
           Show Trail: false
           Value: true
         c2_rr:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        coxa_lf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        coxa_lm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        coxa_lr:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        coxa_rf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        coxa_rm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        coxa_rr:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -294,55 +345,6 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Alpha: 1
-      Class: rviz/Effort
-      Enabled: true
-      History Length: 1
-      Joints:
-        {}
-      Name: Effort
-      Robot Description: robot_description
-      Scale: 1
-      Topic: ""
-      Unreliable: false
-      Value: true
-      Width: 0.0199999996
-      j_c1_lf:
-        Value: true
-      j_c1_lm:
-        Value: true
-      j_c1_lr:
-        Value: true
-      j_c1_rf:
-        Value: true
-      j_c1_rm:
-        Value: true
-      j_c1_rr:
-        Value: true
-      j_femur_lf:
-        Value: true
-      j_femur_lm:
-        Value: true
-      j_femur_lr:
-        Value: true
-      j_femur_rf:
-        Value: true
-      j_femur_rm:
-        Value: true
-      j_femur_rr:
-        Value: true
-      j_tibia_lf:
-        Value: true
-      j_tibia_lm:
-        Value: true
-      j_tibia_lr:
-        Value: true
-      j_tibia_rf:
-        Value: true
-      j_tibia_rm:
-        Value: true
-      j_tibia_rr:
-        Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -368,25 +370,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.47750235
+      Distance: 2.18020201
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.218061119
-        Y: 0.276530147
-        Z: -0.00628024712
+        X: -0.0679534897
+        Y: 0.0332779251
+        Z: 0.0211273134
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.275397599
+      Pitch: 0.375397474
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.7235899
+      Yaw: 5.68858767
     Saved: ~
 Window Geometry:
   Displays:

@@ -1,16 +1,19 @@
 <launch>
     <param name="robot_description" command="cat $(find ardent)/robot/urdf/ardent.urdf" />
     <rosparam file="$(find ardent)/robot/params/controller.yaml" command="load"/>
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
     output="screen" ns="/ardent" args="joint_state_controller j_coxa_rf_position_controller j_coxa_rm_position_controller j_coxa_rr_position_controller j_coxa_lf_position_controller j_coxa_lm_position_controller j_coxa_lr_position_controller j_femur_rf_position_controller j_femur_rm_position_controller j_femur_rr_position_controller j_femur_lf_position_controller j_femur_lm_position_controller j_femur_lr_position_controller j_tibia_rf_position_controller j_tibia_rm_position_controller j_tibia_rr_position_controller j_tibia_lf_position_controller j_tibia_lm_position_controller j_tibia_lr_position_controller"/>
+     -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
+    output="screen" args="joint_state_controller j_coxa_rf_position_controller j_coxa_rm_position_controller j_coxa_rr_position_controller j_coxa_lf_position_controller j_coxa_lm_position_controller j_coxa_lr_position_controller j_femur_rf_position_controller j_femur_rm_position_controller j_femur_rr_position_controller j_femur_lf_position_controller j_femur_lm_position_controller j_femur_lr_position_controller j_tibia_rf_position_controller j_tibia_rm_position_controller j_tibia_rr_position_controller j_tibia_lf_position_controller j_tibia_lm_position_controller j_tibia_lr_position_controller"/>
     
     <!-- 
     <rosparam file="$(find ardent)/params/params.yaml"/>
     <rosparam file="${find ardent)/params/controller.yaml"> -->
-
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
     <!-- convert joint states to TF transforms for rviz, etc -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
         respawn="false" output="screen">
-        <remap from="/joint_states" to="/ardent/joint_states" />
+        <!-- <remap from="/joint_states" to="/ardent/joint_states" /> -->
     </node>
 </launch>
