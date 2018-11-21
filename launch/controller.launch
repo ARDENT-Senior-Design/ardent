@@ -5,8 +5,10 @@
     output="screen" ns="/ardent" args="joint_state_controller j_coxa_rf_position_controller j_coxa_rm_position_controller j_coxa_rr_position_controller j_coxa_lf_position_controller j_coxa_lm_position_controller j_coxa_lr_position_controller j_femur_rf_position_controller j_femur_rm_position_controller j_femur_rr_position_controller j_femur_lf_position_controller j_femur_lm_position_controller j_femur_lr_position_controller j_tibia_rf_position_controller j_tibia_rm_position_controller j_tibia_rr_position_controller j_tibia_lf_position_controller j_tibia_lm_position_controller j_tibia_lr_position_controller"/>
      -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
-    output="screen" args="joint_state_controller j_coxa_rf_position_controller j_coxa_rm_position_controller j_coxa_rr_position_controller j_coxa_lf_position_controller j_coxa_lm_position_controller j_coxa_lr_position_controller j_femur_rf_position_controller j_femur_rm_position_controller j_femur_rr_position_controller j_femur_lf_position_controller j_femur_lm_position_controller j_femur_lr_position_controller j_tibia_rf_position_controller j_tibia_rm_position_controller j_tibia_rr_position_controller j_tibia_lf_position_controller j_tibia_lm_position_controller j_tibia_lr_position_controller"/>
-    
+    output="screen" args = "joint_state_controller leg_rf_traj_controller leg_rm_traj_controller leg_rr_traj_controller leg_lf_traj_controller leg_lm_traj_controller leg_lr_traj_controller" />
+    <!-- args="joint_state_controller j_coxa_rf_position_controller j_coxa_rm_position_controller j_coxa_rr_position_controller j_coxa_lf_position_controller j_coxa_lm_position_controller j_coxa_lr_position_controller j_femur_rf_position_controller j_femur_rm_position_controller j_femur_rr_position_controller j_femur_lf_position_controller j_femur_lm_position_controller j_femur_lr_position_controller j_tibia_rf_position_controller j_tibia_rm_position_controller j_tibia_rr_position_controller j_tibia_lf_position_controller j_tibia_lm_position_controller j_tibia_lr_position_controller" -->
+
+
     <!-- 
     <rosparam file="$(find ardent)/params/params.yaml"/>
     <rosparam file="${find ardent)/params/controller.yaml"> -->

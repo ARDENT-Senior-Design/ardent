@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ardent::ArdentRobot ardent; 
     //test
-    
+    // blah
     Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body
     Eigen::Vector3d command2 = Eigen::Vector3d(0.2,0.0,0);
 

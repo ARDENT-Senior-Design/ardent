@@ -4,129 +4,182 @@
       type: joint_state_controller/JointStateController
       publish_rate: 50  
   #--- Effort controller
-  j_coxa_rf_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_coxa_rf
-    pid: {p: 100.0, i: 0.1, d: 1.0}
 
-  j_coxa_rm_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_coxa_rm
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_coxa_rr_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_coxa_rr
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_coxa_lf_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_coxa_lf
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_coxa_lm_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_coxa_lm
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_coxa_lr_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_coxa_lr
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-  
-  j_femur_rf_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_femur_rf
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_femur_rm_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_femur_rm
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_femur_rr_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_femur_rr
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_femur_lf_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_femur_lf
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_femur_lm_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_femur_lm
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_femur_lr_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_femur_lr
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-
-  j_tibia_rf_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_tibia_rf
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-  
-  j_tibia_rm_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_tibia_rm
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-  
-  j_tibia_rr_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_tibia_rr
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-  
-  j_tibia_lf_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_tibia_lf
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-  
-  j_tibia_lm_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_tibia_lm
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-  
-  j_tibia_lr_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: j_tibia_lr
-    pid: {p: 100.0, i: 0.1, d: 1.0}
-    
-  # leg_controller:
-  #   type: position_controllers/JointEffortController
+  # body_traj_controller:
+  #   type: "effort_controllers/JointTrajectoryController"
   #   joints:
-  #     - j_coxa_rf
-  #     - j_coxa_rm
-  #     - j_coxa_rr
-  #     - j_coxa_lf
-  #     - j_coxa_lm
-  #     - j_coxa_lr
-  #     - j_femur_rf
-  #     - j_femur_rm
-  #     - j_femur_rr
-  #     - j_femur_lf
-  #     - j_femur_lm
-  #     - j_femur_lr
-  #     - j_tibia_rf
-  #     - j_tibia_rm
-  #     - j_tibia_rr
-  #     - j_tibia_lf
-  #     - j_tibia_lm
-  #     - j_tibia_lr
+  #     - j_ardent_attachment
+
   #   constraints:
-  #     j_coxa_rf:
-  #       goal: &goal_pos_constraint 0.1
-  #     j_coxa_rm:
-  #       goal: *goal_pos_constraint
+  #     goal_time: 0.5                   # Override default
+  #     stopped_velocity_tolerance: 0.02 # Override default
+  #     j_ardent_attachment:
+  #       trajectory: 0.05               # Not enforced if unspecified
+  #       goal: 0.02                     # Not enforced if unspecified
 
-  #   pid:
-  #     p: 150
-  #     i: 2.0
-  #     d: 30.0
-  #     i_clamp: 1.0
-  # # copy pasta the rest of the stuff here
+  #   gains: # Required because we're controlling an effort interface
+  #     j_ardent_attachment: {p: 100,  d: 1, i: 1, i_clamp: 1}
+  #   state_publish_rate:  25            # Override default
+  #   action_monitor_rate: 30            # Override default
+  #   stop_trajectory_duration: 0        # Override default
 
+  leg_rf_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+    - j_coxa_rf
+    - j_femur_rf
+    - j_tibia_rf
 
-    
+    constraints:
+      goal_time: 0.5                   # Override default
+      stopped_velocity_tolerance: 0.02 # Override default
+      j_coxa_rf:
+        trajectory: 0.05               # Not enforced if unspecified
+        goal: 0.02                     # Not enforced if unspecified
+      j_femur_rf:
+        trajectory: 0.05               # Not enforced if unspecified
+        goal: 0.02                     # Not enforced if unspecified
+      j_tibia_rf:
+        trajectory: 0.05               # Not enforced if unspecified
+        goal: 0.02                     # Not enforced if unspecified
+    gains: # Required because we're controlling an effort interface
+      j_coxa_rf: {p: 100,  d: 1, i: .1}
+      j_tibia_rf: {p: 100,  d: 1, i: .1}
+      j_femur_rf: {p: 100,  d: 1, i: .1}
+    state_publish_rate:  25            # Override default
+    action_monitor_rate: 30            # Override default
+    stop_trajectory_duration: 0        # Override default
+
+  leg_rm_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+    - j_coxa_rm
+    - j_femur_rm
+    - j_tibia_rm
+    constraints:
+      goal_time: 0.5                   
+      stopped_velocity_tolerance: 0.02 
+      j_coxa_rm:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_femur_rm:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_tibia_rm:
+        trajectory: 0.05               
+        goal: 0.02                     
+    gains: 
+      j_coxa_rm: {p: 100,  d: 1, i: .1}
+      j_tibia_rm: {p: 100,  d: 1, i: .1}
+      j_femur_rm: {p: 100,  d: 1, i: .1}
+    state_publish_rate:  25            
+    action_monitor_rate: 30            
+    stop_trajectory_duration: 0        
+
+  leg_rr_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+    - j_coxa_rr
+    - j_femur_rr
+    - j_tibia_rr
+
+    constraints:
+      goal_time: 0.5                   
+      stopped_velocity_tolerance: 0.02 
+      j_coxa_rr:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_femur_rr:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_tibia_rr:
+        trajectory: 0.05               
+        goal: 0.02                     
+    gains: 
+      j_coxa_rr: {p: 100,  d: 1, i: .1}
+      j_tibia_rr: {p: 100,  d: 1, i: .1}
+      j_femur_rr: {p: 100,  d: 1, i: .1}
+    state_publish_rate:  25            
+    action_monitor_rate: 30            
+    stop_trajectory_duration: 0 
+
+  leg_lf_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+    - j_coxa_lf
+    - j_femur_lf
+    - j_tibia_lf
+
+    constraints:
+      goal_time: 0.5                   
+      stopped_velocity_tolerance: 0.02 
+      j_coxa_lf:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_femur_lf:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_tibia_lf:
+        trajectory: 0.05               
+        goal: 0.02                     
+    gains: 
+      j_coxa_lf: {p: 100,  d: 1, i: .1}
+      j_tibia_lf: {p: 100,  d: 1, i: .1}
+      j_femur_lf: {p: 100,  d: 1, i: .1}
+    state_publish_rate:  25            
+    action_monitor_rate: 30            
+    stop_trajectory_duration: 0
+
+  leg_lm_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+    - j_coxa_lm
+    - j_femur_lm
+    - j_tibia_lm
+
+    constraints:
+      goal_time: 0.5                   
+      stopped_velocity_tolerance: 0.02 
+      j_coxa_lm:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_femur_lm:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_tibia_lm:
+        trajectory: 0.05               
+        goal: 0.02                     
+    gains: 
+      j_coxa_lm: {p: 100,  d: 1, i: .1}
+      j_tibia_lm: {p: 100,  d: 1, i: .1}
+      j_femur_lm: {p: 100,  d: 1, i: .1}
+    state_publish_rate:  25            
+    action_monitor_rate: 30            
+    stop_trajectory_duration: 0  
+
+  leg_lr_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+    - j_coxa_lr
+    - j_femur_lr
+    - j_tibia_lr
+
+    constraints:
+      goal_time: 0.5                   
+      stopped_velocity_tolerance: 0.02 
+      j_coxa_lr:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_femur_lr:
+        trajectory: 0.05              
+        goal: 0.02                     
+      j_tibia_lr:
+        trajectory: 0.05               
+        goal: 0.02                     
+    gains: 
+      j_coxa_lr: {p: 100,  d: 1, i: .1}
+      j_tibia_lr: {p: 100,  d: 1, i: .1}
+      j_femur_lr: {p: 100,  d: 1, i: .1}
+    state_publish_rate:  25            
+    action_monitor_rate: 30            
+    stop_trajectory_duration: 0 

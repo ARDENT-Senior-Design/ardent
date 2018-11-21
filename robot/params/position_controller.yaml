@@ -1,0 +1,95 @@
+#--- Publish Joint States
+  joint_state_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 50  
+  #--- Effort controller
+  
+  j_coxa_m_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_coxa_rf
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_coxa_rm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_coxa_rm
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_coxa_rr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_coxa_rr
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_coxa_lf_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_coxa_lf
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_coxa_lm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_coxa_lm
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_coxa_lr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_coxa_lr
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+  
+  j_femur_rf_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_femur_rf
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_femur_rm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_femur_rm
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_femur_rr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_femur_rr
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_femur_lf_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_femur_lf
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_femur_lm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_femur_lm
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_femur_lr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_femur_lr
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+
+  j_tibia_rf_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_tibia_rf
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+  
+  j_tibia_rm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_tibia_rm
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+  
+  j_tibia_rr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_tibia_rr
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+  
+  j_tibia_lf_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_tibia_lf
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+  
+  j_tibia_lm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_tibia_lm
+    pid: {p: 100.0, i: 0.1, d: 1.0}
+  
+  j_tibia_lr_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j_tibia_lr
+    pid: {p: 100.0, i: 0.1, d: 1.0}
