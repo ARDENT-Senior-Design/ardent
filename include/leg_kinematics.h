@@ -5,6 +5,7 @@
 #include <ros/ros.h>
 #include "geometry_msgs/Pose.h"
 #include "std_msgs/Float64.h"
+#include "std_msgs/Bool.h"
 #include <cmath>
 #include <map>
 #include <string>
@@ -69,6 +70,7 @@ namespace ardent{
             ros::Publisher coxa_pub;
             ros::Publisher femur_pub;
             ros::Publisher tibia_pub;
+            ros::Publisher contact_state_pub;
     };
 }
 

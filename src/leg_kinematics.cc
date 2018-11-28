@@ -10,6 +10,7 @@ namespace ardent{
             femur_pub = nh.advertise<std_msgs::Float64>("/j_femur_"+leg_id+"_position_controller/command",1000);
             tibia_pub = nh.advertise<std_msgs::Float64>("/j_tibia_"+leg_id+"_position_controller/command",1000);
             coxa_pub = nh.advertise<std_msgs::Float64>("/j_coxa_"+leg_id+"_position_controller/command",1000);
+            contact_state_pub = nh.advertise<std_msgs::Bool>("/"+leg_id+"_contact/state",1000);
         }
 
         void ArdentLegKinematics::PublishJointAngles(Vector3d& j_pos)

@@ -2,14 +2,12 @@
 
 namespace ardent
 {
-    ArdentRobot::ArdentRobot()
+    ArdentRobot::ArdentRobot(std::vector<std::string> legs_)
     {
-        leg.push_back(ArdentLegKinematics("rf", body.GetRadius()));
-        leg.push_back(ArdentLegKinematics("rm", body.GetRadius()));
-        leg.push_back(ArdentLegKinematics("rr", body.GetRadius()));
-        leg.push_back(ArdentLegKinematics("lf", body.GetRadius()));
-        leg.push_back(ArdentLegKinematics("lm", body.GetRadius()));
-        leg.push_back(ArdentLegKinematics("lr", body.GetRadius()));
+        num_legs = legs_.size();
+        for(int i=0;i<legs_.size();i++){
+            leg.push_back(ArdentLegKinematics(legs_[i], body.GetRadius()));
+        }
         //initialize the legs based on the body offset
     }
 
@@ -46,7 +44,10 @@ namespace ardent
     }
     bool ArdentRobot::CheckStability()
     {
-        return true;
+        std::vector<float> contact_legs;
+        for(int i=0;i<num_legs;i++){
+            //if(GetMappedLeg(i))
+        }
     }
 
 }

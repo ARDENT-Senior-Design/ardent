@@ -9,12 +9,16 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   Eigen3
+  genmsg
+  actionlib_msgs
+  actionlib
 )
 
 
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(gazebo REQUIRED)
 
+generate_messages(DEPENDENCIES actionlib_msgs)
 
 include_directories(
   ${EIGEN3_INCLUDE_DIR}

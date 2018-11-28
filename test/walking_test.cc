@@ -17,7 +17,8 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "walking_test");
     ros::NodeHandle n;
-    ardent::ArdentRobot ardent; 
+    std::vector<std::string> legs = {"rf","rm","rr","lf","lm","lr"};
+    ardent::ArdentRobot ardent(legs); 
     //test
     // blah
     Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body

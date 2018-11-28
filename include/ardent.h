@@ -11,8 +11,9 @@ namespace ardent{
         public:
             /** 
              * @brief Creates a new ARDENT robot
+             * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
-            ArdentRobot();
+            ArdentRobot(std::vector<std::string> legs_);
             ~ArdentRobot() = default;
             
             void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
@@ -26,6 +27,7 @@ namespace ardent{
 
         ArdentBodyKinematics body;
         std::vector<ArdentLegKinematics> leg; //initialize 6 robot legs
+        int num_legs;
     };
 
 }
