@@ -15,6 +15,7 @@ namespace ardent
             using Matrix4d = Eigen::Matrix4d;
 
             /**
+             * Supporting Library
              * @brief Constructor for the body frame of the robot
              */
             ArdentBodyKinematics() = default;

@@ -59,13 +59,13 @@
       </transmission> -->
 
     <!-- Build Leg -->
-    <xacro:leg_l xyz="0.175 -0.1  0.001116"  rpy="0 0 5.475" suffix="rf"/>
+    <xacro:leg_l xyz="0.175 -0.1  0.001116"  rpy="0 0 5.576" suffix="rf"/>
     <xacro:leg_l xyz="0 -0.2  0.001116"  rpy="0 0 -1.57" suffix="rm"/>
-    <xacro:leg_l xyz="-0.175 -0.1  0.001116"  rpy="0 0 -2.335" suffix="rr"/>
+    <xacro:leg_l xyz="-0.175 -0.1  0.001116"  rpy="0 0 -2.62" suffix="rr"/>
 
-    <xacro:leg_l xyz="0.175 0.1  0.001116"  rpy="0 0 0.765" suffix="lf"/>
+    <xacro:leg_l xyz="0.175 0.1  0.001116"  rpy="0 0 0.52" suffix="lf"/>
     <xacro:leg_l xyz="0 0.2  0.001116"  rpy="0 0 1.57" suffix="lm"/>
-    <xacro:leg_l xyz="-0.175 0.1  0.001116"  rpy="0 0 2.335" suffix="lr"/> 
+    <xacro:leg_l xyz="-0.175 0.1  0.001116"  rpy="0 0 2.62" suffix="lr"/> 
 
 </xacro:macro>
 
@@ -134,10 +134,10 @@
      <inertia ixx="0.00059"  ixy="-0.0"  ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059" /> 
     </inertial>
     <visual>
-      <origin xyz="0.125 0 0" rpy="0 1.57 0"  />
+      <origin xyz="0.075 0 0" rpy="0 1.57 0"  />
       <geometry>
         <!-- <box size="0.022 0.25 0.0325" /> -->
-        <cylinder  radius="0.015" length="0.25" />
+        <cylinder  radius="0.015" length="0.15" />
         <!--<mesh filename="package://phantomx_description/meshes/thigh_l.STL"  scale="1 1 1"/>-->
       </geometry>
       <material name="Grey">
@@ -145,9 +145,9 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0.125 0 0" rpy="0 1.57 0"  />
+      <origin xyz="0.075 0 0" rpy="0 1.57 0"  />
       <geometry>
-        <cylinder  radius="0.015" length="0.25" />
+        <cylinder  radius="0.015" length="0.15" />
         <!-- <mesh filename="package://phantomx_description/meshes/thigh_l_coll.STL"  scale="1 1 1"/> -->
       </geometry>
     </collision>
@@ -165,7 +165,7 @@
      <inertia ixx="0.00059"  ixy="-0.0"  ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.00059" /> 
     </inertial>
     <visual>
-      <origin xyz="0.117 0 0" rpy="1.57 0 1.57"  />
+      <origin xyz="0.125 0 0" rpy="1.57 0 1.57"  />
       <geometry>
         <cylinder  radius="0.015" length="0.25" />
         <!-- <box size="0.022 0.25 0.0325" /> -->
@@ -176,7 +176,7 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0.117 0 0" rpy="1.57 0 1.57"  />
+      <origin xyz="0.125 0 0" rpy="1.57 0 1.57"  />
       <geometry>
         <cylinder  radius="0.015" length="0.25" />
         <!-- <mesh filename="package://phantomx_description/meshes/tibia_l_coll.STL"  scale="1 1 1"/> -->
@@ -211,7 +211,7 @@
   <joint name="j_tibia_${suffix}" type="revolute">
     <parent link="femur_${suffix}"/>
     <child link="tibia_${suffix}"/>
-    <origin xyz="0.25 0 0" rpy="0 0 0" />
+    <origin xyz="0.125 0 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
     <limit effort="30" velocity="0.5" lower="-3.14" upper="3.14" />
   </joint>

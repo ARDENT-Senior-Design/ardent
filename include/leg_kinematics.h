@@ -15,6 +15,7 @@ namespace ardent{
         public:
             using Vector3d = Eigen::Vector3d;
             /**
+             * Supporting Library
              * @brief Default initialize leg lengths with values
              * @param led_id is one of the legs COXA, FEMUR, TIBIA
              * @param radial_offset is the distance from the origin to the leg position

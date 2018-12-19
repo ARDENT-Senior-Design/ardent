@@ -10,6 +10,7 @@ namespace ardent{
     class ArdentRobot{
         public:
             /** 
+             * Supporting Library
              * @brief Creates a new ARDENT robot
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
