@@ -3,23 +3,22 @@ project(ardent)
 
 add_compile_options(-std=c++11)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+SET( EIGEN3_INCLUDE_DIR "$ENV{EIGEN3_INCLUDE_DIR}" )
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   gazebo_ros
   sensor_msgs
   std_msgs
-  Eigen3
   genmsg
   actionlib_msgs
   actionlib
 )
-
+find_package(Eigen3 REQUIRED)
 
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(gazebo REQUIRED)
 
 generate_messages(DEPENDENCIES actionlib_msgs)
-
 include_directories(
   ${EIGEN3_INCLUDE_DIR}
   ${catkin_INCLUDE_DIRS}
