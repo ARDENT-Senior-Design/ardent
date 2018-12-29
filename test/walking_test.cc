@@ -17,12 +17,12 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "walking_test");
     ros::NodeHandle n;
-    std::vector<std::string> legs = {"rf","rm","rr","lf","lm","lr"};
+    std::vector<std::string> legs = {"rf"};//,"rm","rr","lf","lm","lr"};
     ardent::ArdentRobot ardent(legs); 
     //test
     // blah
-    Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body
-    Eigen::Vector3d command2 = Eigen::Vector3d(0.2,0.0,0);
+    //Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body
+    //Eigen::Vector3d command2 = Eigen::Vector3d(0.2,0.0,0);
 
     ros::Timer timer = n.createTimer(ros::Duration(2.0), timerCallback);
     float angle = 0;
@@ -30,14 +30,14 @@ int main(int argc, char **argv)
 
     while(ros::ok())
     {
-        for(int i=0;i<6;i++){
+        /*for(int i=0;i<6;i++){
             if(i == leg_num){
                 ardent.PublishLegPosition(ardent.GetMappedLeg(i),command2);
             }
             else{
                 ardent.PublishLegPosition(ardent.GetMappedLeg(i), command1);
             }
-        }
+        }*/
         ros::spinOnce();
         loop_rate.sleep();
     }
