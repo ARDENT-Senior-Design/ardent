@@ -1,6 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/Float64.h"
-#include "../include/robot.h"
+#include "../include/ardent/robot.h"
 
 float leg_num = -1;
 void timerCallback(const ros::TimerEvent& event){
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "walking_test");
     ros::NodeHandle n;
     std::vector<std::string> legs = {"rf"};//,"rm","rr","lf","lm","lr"};
-    ardent::Robot ardent(legs); 
+    ardent_model::Robot ardent(legs); 
     //test
     // blah
     //Eigen::Vector3d command1 = Eigen::Vector3d(0.35,0.0,-0.25); //relative to the center of the body

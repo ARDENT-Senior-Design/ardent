@@ -9,19 +9,21 @@
 #include <cmath>
 #include <map>
 #include <string>
-namespace ardent{ 
 
-    class ArdentLegKinematics{
+namespace ardent_model
+{
+
+    class LegKinematics{
         public:
-            using Vector3d = Eigen::Vector3d;
+            typedef Eigen::Vector3d Vector3d;
             /**
              * Supporting Library
              * @brief Default initialize leg lengths with values
              * @param led_id is one of the legs COXA, FEMUR, TIBIA
              * @param radial_offset is the distance from the origin to the leg position
              */
-            ArdentLegKinematics(std::string leg_id, double radial_offset);
-            virtual ~ArdentLegKinematics() = default;
+            LegKinematics(std::string leg_id, double radial_offset);
+            virtual ~LegKinematics();
 
             /**
              * @brief Gets the leg angles based on an end-effector position. 
@@ -57,13 +59,13 @@ namespace ardent{
              */
             void ForceLegConstraints(double& q, std::string joint_id);
             
-           
+            
         
         private:
             double radial_offset; //Distance from center of body to coxa
-            double coxa_length = 0.1; // link length from first motor (j_coxa) to second motor (j_femur)
-            double femur_length = 0.25; // link length from second motor (j_femur) to third joint (j_tibia)
-            double tibia_length = 0.25; //link length from third motor (j_tibia) to the end effector
+            double coxa_length; // link length from first motor (j_coxa) to second motor (j_femur)
+            double femur_length; // link length from second motor (j_femur) to third joint (j_tibia)
+            double tibia_length; //link length from third motor (j_tibia) to the end effector
 
             // Angle should be kept track of by encoders, I will try to keep track of them here
             std::string leg_id;
@@ -74,7 +76,5 @@ namespace ardent{
             ros::Publisher contact_state_pub;
     };
 }
-
-
 
 #endif

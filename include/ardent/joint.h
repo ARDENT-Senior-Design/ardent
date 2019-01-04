@@ -41,7 +41,7 @@
 #include <urdf_model/joint.h>
 
 
-namespace pr2_mechanism_model {
+namespace ardent_model {
 
 class JointState;
 

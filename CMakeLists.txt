@@ -4,6 +4,7 @@ project(ardent)
 add_compile_options(-std=c++11)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 SET( EIGEN3_INCLUDE_DIR "$ENV{EIGEN3_INCLUDE_DIR}" )
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   gazebo_ros
@@ -30,6 +31,14 @@ include_directories(
 link_directories(${gazebo_LIBRARY} ${EIGEN3_INCLUDE_DIR})
 list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 
+
+set(LIB_SOURCES
+    src/robot.cc
+    src/leg_kinematics.cc
+    src/body_kinematics.cc)
+
+add_library(${PROJECT_NAME} ${LIB_SOURCES})
+
 catkin_package(
   INCLUDE_DIRS
     include ${EIGEN3_INCLUDE_DIR}
@@ -42,10 +51,19 @@ catkin_package(
     Boost
 )
 
-add_library(${PROJECT_NAME} 
-            src/robot.cc
-            src/leg_kinematics.cc
-            src/body_kinematics.cc)
 
 add_executable(walking_test test/walking_test.cc)
 target_link_libraries(walking_test ${catkin_LIBRARIES} ${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME}  ltdl ${Boost_LIBRARIES}
+${catkin_LIBRARIES})
+
+
+install(DIRECTORY include/${PROJECT_NAME}/
+DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+PATTERN ".svn" EXCLUDE)
+
+install(TARGETS ardent
+   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})

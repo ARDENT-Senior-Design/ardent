@@ -5,21 +5,21 @@
 #include <ros/ros.h>
 #include <string>
 
-namespace ardent
-{
-    class ArdentBodyKinematics
+namespace ardent_model {
+
+    class BodyKinematics
     {
         #define BODY_THICKNESS 2
         public:
-            using Vector3d = Eigen::Vector3d;
-            using Matrix4d = Eigen::Matrix4d;
+            typedef Eigen::Vector3d Vector3d;
+            typedef Eigen::Matrix4d Matrix4d;
 
             /**
              * Supporting Library
              * @brief Constructor for the body frame of the robot
              */
-            ArdentBodyKinematics() = default;
-            virtual ~ArdentBodyKinematics() = default;
+            BodyKinematics(); //= default;
+            ~BodyKinematics(); //= default;
             
             /**
              * @brief The transform to the coxa joint of a leg based on the orientation and size of the body
@@ -27,7 +27,7 @@ namespace ardent
              */
             Matrix4d GetLegPosition(std::string leg_id);
 
-             /**
+                /**
              * @brief Returns the 0-angle of the leg relative to the IMU direction
              * @return The angular offset of the leg regular to the X-axis
              */
@@ -42,13 +42,10 @@ namespace ardent
             
 
         private:
-            Vector3d rpy = Vector3d(0, 0, 0);   //roll, pitch, and yaw of the robot body
-            Vector3d body_pose = Vector3d(0, 0, BODY_THICKNESS);
-            double leg_radius = 0.2;
+            Vector3d rpy;   //roll, pitch, and yaw of the robot body
+            Vector3d body_pose;
+            double leg_radius;
             
     };
-
-
 }
-
 #endif

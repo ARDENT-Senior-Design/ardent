@@ -32,7 +32,7 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************/
 
-#include <ardent/joint.h>
+#include "../include/ardent/joint.h"
 #include <map>
 #include <string>
 #include <vector>
@@ -40,7 +40,7 @@
 #include <limits> // for std::numeric_limits
 
 using namespace std;
-using namespace pr2_mechanism_model;
+using namespace ardent_model;
 
 
 void JointStatistics::update(JointState* jnt)
