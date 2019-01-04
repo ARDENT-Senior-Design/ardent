@@ -17,7 +17,6 @@ namespace ardent_model {
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
             Robot(std::vector<std::string> legs_);
-            ~Robot(){} //= default;
             
             void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
 

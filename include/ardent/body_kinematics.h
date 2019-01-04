@@ -19,7 +19,7 @@ namespace ardent_model {
              * @brief Constructor for the body frame of the robot
              */
             BodyKinematics(); //= default;
-            ~BodyKinematics(); //= default;
+            // ~BodyKinematics(); //= default;
             
             /**
              * @brief The transform to the coxa joint of a leg based on the orientation and size of the body

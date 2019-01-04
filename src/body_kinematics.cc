@@ -7,9 +7,6 @@ BodyKinematics::BodyKinematics()
 {
 }
 
-BodyKinematics::~BodyKinematics()
-{
-}
 
 Eigen::Matrix4d BodyKinematics::GetLegPosition(std::string leg_id)
 {

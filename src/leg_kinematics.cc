@@ -13,9 +13,6 @@ LegKinematics::LegKinematics(std::string new_leg_id, double body_radius)
     contact_state_pub = nh.advertise<std_msgs::Bool>("/"+leg_id+"_contact/state",1000);
 }
 
-LegKinematics::~LegKinematics()
-{
-}
 
 void LegKinematics::PublishJointAngles(Vector3d& j_pos)
 {   

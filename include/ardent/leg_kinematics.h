@@ -23,7 +23,7 @@ namespace ardent_model
              * @param radial_offset is the distance from the origin to the leg position
              */
             LegKinematics(std::string leg_id, double radial_offset);
-            virtual ~LegKinematics();
+            // virtual ~LegKinematics();
 
             /**
              * @brief Gets the leg angles based on an end-effector position. 
