@@ -43,7 +43,7 @@ catkin_package(
 )
 
 add_library(${PROJECT_NAME} 
-            src/ardent.cc
+            src/robot.cc
             src/leg_kinematics.cc
             src/body_kinematics.cc)
 

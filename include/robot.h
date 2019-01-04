@@ -5,17 +5,19 @@
 #include "leg_kinematics.h"
 #include "body_kinematics.h"
 #include <string>
+#include <hardware_interface/hardware_interface.h>
+
 namespace ardent{
 
-    class ArdentRobot{
+    class Robot{
         public:
             /** 
              * Supporting Library
              * @brief Creates a new ARDENT robot
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
-            ArdentRobot(std::vector<std::string> legs_);
-            ~ArdentRobot() = default;
+            Robot(std::vector<std::string> legs_);
+            ~Robot() = default;
             
             void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
 
