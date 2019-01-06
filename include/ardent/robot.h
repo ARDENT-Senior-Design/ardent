@@ -4,20 +4,38 @@
 #include <ros/ros.h>
 #include "leg_kinematics.h"
 #include "body_kinematics.h"
+#include "hardware_interface.h"
 #include <string>
 #include <hardware_interface/hardware_interface.h>
 #include "joint.h"
+#include "transmission.h"
 namespace ardent_model {
+    
+    class RobotKinematics
+    {
+        private:
+            BodyKinematics body;
+            std::vector<LegKinematics> legs;
+            int num_legs;
+        public:
+            RobotKinematics(BodyKinematics body_, std::vector<LegKinematics> legs_,int num_legs_) :
+                body(body_), legs(legs_), num_legs(num_legs_)
+            {
+            }
+    };
 
     class Robot{
+        private: 
+            RobotKinematics robot_model;
+            std::vector<boost::shared_ptr<Transmission> > transmissions;
         public:
             /** 
              * Supporting Library
-             * @brief Creates a new ARDENT robot
+             * @brief Creates a new robot
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
-            Robot(std::vector<std::string> legs_);
-            
+            Robot(TiXmlElement *robot_root, ardent_hardware_interface::HardwareInterface *hw);
+            ~Robot(){}
             void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
 
             std::string GetMappedLeg(int leg_num);
@@ -25,11 +43,6 @@ namespace ardent_model {
 
             bool CheckStability();
 
-        private: 
-
-        BodyKinematics body;
-        std::vector<LegKinematics> leg; //initialize 6 robot legs
-        int num_legs;
     };
 
     /** \brief This class provides the controllers with an interface to the robot state

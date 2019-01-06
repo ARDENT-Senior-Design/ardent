@@ -13,7 +13,8 @@
 namespace ardent_model
 {
 
-    class LegKinematics{
+    class LegKinematics : public Transmission
+    {
         public:
             typedef Eigen::Vector3d Vector3d;
             /**

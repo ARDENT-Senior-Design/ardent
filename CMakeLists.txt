@@ -35,7 +35,8 @@ list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 set(LIB_SOURCES
     src/robot.cc
     src/leg_kinematics.cc
-    src/body_kinematics.cc)
+    src/body_kinematics.cc
+    src/hardware_interface.cc)
 
 add_library(${PROJECT_NAME} ${LIB_SOURCES})
 
