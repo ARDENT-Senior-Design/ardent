@@ -278,8 +278,27 @@
   </joint> -->
 
 
+  <transmission type="ardent_model/SimpleTransmission" name="t_coxa_${suffix}">
+    <joint name="t_coxa_${suffix}">
+    <actuator name="t_coxa_${suffix}">
+    <mechanicalReduction>1</mechanicalReduction>
+    <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
+  </transmission>
 
-   <transmission name="t_coxa_${suffix}">
+  <transmission type="ardent_model/SimpleTransmission" name="t_femur_${suffix}">
+    <joint name="t_femur_${suffix}">
+    <actuator name="t_femur_${suffix}">
+    <mechanicalReduction>1</mechanicalReduction>
+    <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
+  </transmission>
+
+  <transmission type="ardent_model/SimpleTransmission" name="t_tibia_${suffix}">
+    <joint name="t_tibia_${suffix}">
+    <actuator name="t_tibia_${suffix}">
+    <mechanicalReduction>1</mechanicalReduction>
+    <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
+  </transmission>
+   <!-- <transmission name="t_coxa_${suffix}">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j_coxa_${suffix}">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>    
@@ -312,7 +331,7 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission>
+  </transmission> -->
 
   <gazebo reference="MP_BODY">
     <material>Gazebo/Orange</material>
