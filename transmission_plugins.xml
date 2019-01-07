@@ -1,0 +1,3 @@
+<library path="lib/libardent_model">
+    <class name="ardent_model/SimpleTranmission" type="ardent:_model::SimpleTranmission" base_class_type="ardent_model::Transmission">
+</library>

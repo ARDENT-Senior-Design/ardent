@@ -36,7 +36,8 @@ set(LIB_SOURCES
     src/robot.cc
     src/leg_kinematics.cc
     src/body_kinematics.cc
-    src/hardware_interface.cc)
+    src/hardware_interface.cc
+    src/simple_transmission.cc)
 
 add_library(${PROJECT_NAME} ${LIB_SOURCES})
 
