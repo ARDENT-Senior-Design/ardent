@@ -16,9 +16,7 @@ namespace ardent_model {
             BodyKinematics body;
             std::vector<LegKinematics> legs;
             int num_legs;
-            ros::Time getTime();
             hardware_interface::HardwareInterface* hw;
-            ros::Time current_time;
             //std::vector<boost::shared_ptr<Transmission> > transmissions;
         public:
             /** 
@@ -29,6 +27,7 @@ namespace ardent_model {
             Robot(std::vector<std::string> legs_);
             //Robot(TiXmlElement *robot_root, ardent_hardware_interface::HardwareInterface *hw);
             ~Robot(){}
+
             void publishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos); //TODO: Change to include pose, vel
 
             std::string getMappedLeg(int leg_num);
@@ -49,16 +48,20 @@ namespace ardent_model {
     class RobotState //: public hardware_interface::HardwareInterface
     {
         public:
+        // time since starting the robot 
+        ros::Time current_time;
         /// constructor
         RobotState(Robot *model);
         /// The robot model containing the transmissions, urdf robot model, and hardware interface
-        Robot *model_;
+        Robot *model;
+        
+        ros::Time getTime();
         /// The vector of joint states, in no particular order
-        std::vector<sensor_msgs::JointState> joint_states_;
+        std::vector<sensor_msgs::JointState> joint_states;
         /// Get a joint state by name
-        sensor_msgs::JointState *getLegState(const std::string &name);
+        sensor_msgs::JointState *getJointState(const std::string &name);
         /// Get a const joint state by name
-        const sensor_msgs::JointState *getJointState(const std::string &name) const;
+        //const sensor_msgs::JointState *getJointState(const std::string &name) const;
 
         std::map<std::string, sensor_msgs::JointState*> joint_states_map_;
 

@@ -12,7 +12,7 @@ Robot::Robot(std::vector<std::string> legs_)
     //initialize the legs based on the body offset
 }
 
-ros::Time Robot::getTime()
+ros::Time RobotState::getTime()
 {
     return current_time;
 }
