@@ -7,7 +7,7 @@
 
 namespace ardent_model {
 
-    class BodyKinematics : public Transmission
+    class BodyKinematics
     {
         #define BODY_THICKNESS 2
         public:

@@ -5,20 +5,26 @@ using namespace ardent_model;
 Robot::Robot(std::vector<std::string> legs_)
 {
     num_legs = legs_.size();
+    
     for(int i=0;i<legs_.size();i++){
-        leg.push_back(LegKinematics(legs_[i], body.GetRadius()));
+        legs.push_back(LegKinematics(legs_[i], body.GetRadius()));
     }
     //initialize the legs based on the body offset
 }
 
-void Robot::PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos)
+ros::Time Robot::getTime()
 {
-    int leg_map = GetMappedLeg(leg_id);
-    Eigen::Vector3d joint_angles= leg[leg_map].GetJointAngles(ee_pos);
-    leg[leg_map].PublishJointAngles(joint_angles);
+    return current_time;
 }
 
-std::string Robot::GetMappedLeg(int leg_num)
+void Robot::publishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos)
+{
+    int leg_map = getMappedLeg(leg_id);
+    sensor_msgs::JointState joint_state= legs[leg_map].getJointState(ee_pos);
+    legs[leg_map].publishJointState(joint_state);
+}
+
+std::string Robot::getMappedLeg(int leg_num)
 {
     static const std::map<int,std::string> leg_map{
         {0, "rf"},
@@ -30,7 +36,7 @@ std::string Robot::GetMappedLeg(int leg_num)
     };
     return leg_map.at(leg_num);
 }
-int Robot::GetMappedLeg(std::string leg_id)
+int Robot::getMappedLeg(std::string leg_id)
 {
     static const std::map<std::string, int> leg_map{
         {"rf", 0},
@@ -42,7 +48,7 @@ int Robot::GetMappedLeg(std::string leg_id)
     };return leg_map.at(leg_id);
 
 }
-bool Robot::CheckStability()
+bool Robot::checkStability()
 {
     std::vector<float> contact_legs;
     for(int i=0;i<num_legs;i++){

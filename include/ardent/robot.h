@@ -4,46 +4,38 @@
 #include <ros/ros.h>
 #include "leg_kinematics.h"
 #include "body_kinematics.h"
-#include "hardware_interface.h"
+//#include "hardware_interface.h"
 #include <string>
 #include <hardware_interface/hardware_interface.h>
-#include "joint.h"
-#include "transmission.h"
+#include <sensor_msgs/JointState.h>
+//#include "transmission.h"
 namespace ardent_model {
-    
-    class RobotKinematics
-    {
-        private:
-            BodyKinematics body;
-            std::vector<LegKinematics> legs;
-            int num_legs;
-        public:
-            RobotKinematics(BodyKinematics body_, std::vector<LegKinematics> legs_,int num_legs_) :
-                body(body_), legs(legs_), num_legs(num_legs_)
-            {
-            }
-    };
 
     class Robot{
         private: 
-            RobotKinematics robot_model;
-            std::vector<boost::shared_ptr<Transmission> > transmissions;
+            BodyKinematics body;
+            std::vector<LegKinematics> legs;
+            int num_legs;
+            ros::Time getTime();
+            hardware_interface::HardwareInterface* hw;
+            ros::Time current_time;
+            //std::vector<boost::shared_ptr<Transmission> > transmissions;
         public:
             /** 
              * Supporting Library
              * @brief Creates a new robot
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
-            Robot(TiXmlElement *robot_root, ardent_hardware_interface::HardwareInterface *hw);
+            Robot(std::vector<std::string> legs_);
+            //Robot(TiXmlElement *robot_root, ardent_hardware_interface::HardwareInterface *hw);
             ~Robot(){}
-            void PublishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos);
+            void publishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos); //TODO: Change to include pose, vel
 
-            std::string GetMappedLeg(int leg_num);
-            int GetMappedLeg(std::string leg_id);
+            std::string getMappedLeg(int leg_num);
+            int getMappedLeg(std::string leg_id);
 
-            bool CheckStability();
-
-    };
+            bool checkStability();
+    }; 
 
     /** \brief This class provides the controllers with an interface to the robot state
      *
@@ -54,7 +46,7 @@ namespace ardent_model {
      * Some specialized controllers (such as the calibration controllers) can get access
      * to actuator states, and transmission states.
      */
-    class RobotState : public hardware_interface::HardwareInterface
+    class RobotState //: public hardware_interface::HardwareInterface
     {
         public:
         /// constructor
@@ -62,11 +54,14 @@ namespace ardent_model {
         /// The robot model containing the transmissions, urdf robot model, and hardware interface
         Robot *model_;
         /// The vector of joint states, in no particular order
-        std::vector<JointState> joint_states_;
+        std::vector<sensor_msgs::JointState> joint_states_;
         /// Get a joint state by name
-        JointState *getJointState(const std::string &name);
+        sensor_msgs::JointState *getLegState(const std::string &name);
         /// Get a const joint state by name
-        const JointState *getJointState(const std::string &name) const;
+        const sensor_msgs::JointState *getJointState(const std::string &name) const;
+
+        std::map<std::string, sensor_msgs::JointState*> joint_states_map_;
+
         /// Get the time when the current controller cycle was started
         // ros::Time getTime() {return model_->getTime();};
         /**
@@ -74,14 +69,14 @@ namespace ardent_model {
          * Since name lookup is slow, for each transmission in the robot model we
          * cache pointers to the actuators and joints that it connects.
          **/
-        // std::vector<std::vector<pr2_hardware_interface::Actuator*> > transmissions_in_;
+        //std::vector<std::vector<hardware_interface::Actuator*> > transmissions_in_;
 
         /**
          * Each transmission refers to the actuators and joints it connects by name.
          * Since name lookup is slow, for each transmission in the robot model we
          * cache pointers to the actuators and joints that it connects.
          **/
-        // std::vector<std::vector<pr2_mechanism_model::JointState*> > transmissions_out_;
+        //std::vector<std::vector<sensor_msgs::JointState*> > transmissions_out_;
 
         /// Propagete the actuator positions, through the transmissions, to the joint positions
         void propagateActuatorPositionToJointPosition();
@@ -101,9 +96,6 @@ namespace ardent_model {
 
         /// Set the commanded_effort_ of each joint state to zero
         void zeroCommands();
-
-
-        std::map<std::string, JointState*> joint_states_map_;
 
     };
 

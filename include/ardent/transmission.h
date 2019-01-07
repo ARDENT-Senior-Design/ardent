@@ -1,5 +1,5 @@
-#ifndef TRANSMISSION_H
-#define TRANSMISSION_H
+#ifndef TRANSMISSION_INTERFACE_H_
+#define TRANSMISSION_INTERFACE_H_
 
 #include <tinyxml.h>
 #include "joint.h"
@@ -38,6 +38,8 @@ namespace ardent_model
             // initialize transmission from xml data
             virtual bool initXml(TiXmlElement *config) { abort(); }
     };
+
+    
 }
 
 

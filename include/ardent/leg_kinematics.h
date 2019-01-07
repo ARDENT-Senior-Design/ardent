@@ -9,14 +9,18 @@
 #include <cmath>
 #include <map>
 #include <string>
+#include <sensor_msgs/JointState.h>
 
 namespace ardent_model
 {
 
-    class LegKinematics : public Transmission
+    class LegKinematics 
     {
         public:
             typedef Eigen::Vector3d Vector3d;
+
+            std::vector<std::string> joint_names;
+
             /**
              * Supporting Library
              * @brief Default initialize leg lengths with values
@@ -31,13 +35,13 @@ namespace ardent_model
              * @param ee_pos End Effector position xyz relative to frame relative to j_c1_rf
              * @return Get the joint angles to reach cartesian position in a vector array relative to robot center. In order: the vector array of each angle is: Coxa, femur, tibia
              */ 
-            Vector3d GetJointAngles(Vector3d& ee_pos);
+            sensor_msgs::JointState getJointState(Vector3d& ee_pos);
             
             /**
              * @brief Publishes positions to the coxa, femur, and tibia joint controllers
              * @param j_pos A vector that contains the target angular position of the coxa, femur, and tibia
              * */
-            void PublishJointAngles(Vector3d& j_pos);
+            void publishJointState(sensor_msgs::JointState joint_state_);
 
             /**
              * @brief Get the position of a specific joint in the leg
@@ -67,7 +71,7 @@ namespace ardent_model
             double coxa_length; // link length from first motor (j_coxa) to second motor (j_femur)
             double femur_length; // link length from second motor (j_femur) to third joint (j_tibia)
             double tibia_length; //link length from third motor (j_tibia) to the end effector
-
+            
             // Angle should be kept track of by encoders, I will try to keep track of them here
             std::string leg_id;
             ros::NodeHandle nh;

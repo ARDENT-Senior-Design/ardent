@@ -7,34 +7,38 @@ LegKinematics::LegKinematics(std::string new_leg_id, double body_radius)
 {
     leg_id = new_leg_id;
     radial_offset = body_radius;
-    femur_pub = nh.advertise<std_msgs::Float64>("/j_femur_"+leg_id+"_position_controller/command",1000);
-    tibia_pub = nh.advertise<std_msgs::Float64>("/j_tibia_"+leg_id+"_position_controller/command",1000);
-    coxa_pub = nh.advertise<std_msgs::Float64>("/j_coxa_"+leg_id+"_position_controller/command",1000);
+    joint_names.push_back("j_coxa_");
+    joint_names.push_back("j_femur_");
+    joint_names.push_back("j_tibia_");
+    coxa_pub = nh.advertise<std_msgs::Float64>("/"+joint_names[0]+leg_id+"_position_controller/command",1000);
+    femur_pub = nh.advertise<std_msgs::Float64>("/j_femur_"+joint_names[1]+leg_id+"_position_controller/command",1000);
+    tibia_pub = nh.advertise<std_msgs::Float64>("/j"+joint_names[2]+leg_id+"_position_controller/command",1000);
     contact_state_pub = nh.advertise<std_msgs::Bool>("/"+leg_id+"_contact/state",1000);
 }
 
-
-void LegKinematics::PublishJointAngles(Vector3d& j_pos)
+void LegKinematics::publishJointState(sensor_msgs::JointState joint_state_)
 {   
     ROS_DEBUG_STREAM("Joint Angles are getting published");
     std_msgs::Float64 coxa_msg;
     std_msgs::Float64 femur_msg;
     std_msgs::Float64 tibia_msg;
     if(leg_id == "lf" || leg_id == "lm" || leg_id =="lr"){
-        coxa_msg.data = -(float)j_pos.x();
+        coxa_msg.data = -(float)joint_state_.position.at(0);
     }
     else{
-        coxa_msg.data = (float)j_pos.x();
+        coxa_msg.data = (float)joint_state_.position.at(0);
     }
-    femur_msg.data = (float)j_pos.y();
-    tibia_msg.data = (float)j_pos.z();
+    femur_msg.data = (float)joint_state_.position.at(1);
+    tibia_msg.data = (float)joint_state_.position.at(2);
 
     coxa_pub.publish(coxa_msg);
     femur_pub.publish(femur_msg);
     tibia_pub.publish(tibia_msg);
+
+    // add velocity and acceleration down here later
 }
 
-Eigen::Vector3d LegKinematics::GetJointAngles(Vector3d& ee_pos) 
+sensor_msgs::JointState LegKinematics::getJointState(Vector3d& ee_pos) 
 {
     Eigen::Matrix4d h;  //transformation matrix for the joint
     Eigen::Vector3d joint_angles;   //list of coxa, femur, and tibia joint angles
@@ -74,7 +78,17 @@ Eigen::Vector3d LegKinematics::GetJointAngles(Vector3d& ee_pos)
     ForceLegConstraints(joint_angles.y(),"femur");
     ForceLegConstraints(joint_angles.z(),"tibia");
     
-    return joint_angles;
+    //return joint_angles;
+    sensor_msgs::JointState joint_state_;
+    std::string joint_name;
+    for(size_t i=0;i<joint_names.size();++i)
+    {
+        joint_name = joint_names[i]+leg_id;
+        joint_state_.name.push_back(joint_name.c_str());
+        joint_state_.position.push_back(joint_angles[i]);
+        joint_state_.velocity.push_back(0); // zero for now
+        joint_state_.effort.push_back(0);   // zero for now
+    }
 }
 
 Eigen::Vector3d LegKinematics::GetJointPosition(std::string joint_id) 
