@@ -13,9 +13,15 @@ find_package(catkin REQUIRED COMPONENTS
   genmsg
   actionlib_msgs
   actionlib
+  pluginlib
+  angles
+  hardware_interface
+  urdf
+  cmake_modules
 )
 find_package(Eigen3 REQUIRED)
-
+find_package(TinyXML REQUIRED)
+find_package(urdfdom REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(gazebo REQUIRED)
 
@@ -49,8 +55,14 @@ catkin_package(
   CATKIN_DEPENDS 
     sensor_msgs
     gazebo_ros
+    hardware_interface
+    pluginlib
+    urdf
+    cmake_modules
   DEPENDS 
     Boost
+    TinyXML
+    urdfdom
 )
 
 
@@ -69,3 +81,15 @@ install(TARGETS ardent
    RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+
+install(
+  DIRECTORY
+    launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(
+  DIRECTORY
+    robot/params
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)

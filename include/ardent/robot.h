@@ -4,21 +4,30 @@
 #include <ros/ros.h>
 #include "leg_kinematics.h"
 #include "body_kinematics.h"
-//#include "hardware_interface.h"
+#include <urdf/model.h>
+#include <map>
+#include "hardware_interface.h"
 #include <string>
 #include <hardware_interface/hardware_interface.h>
 #include <sensor_msgs/JointState.h>
-//#include "transmission.h"
+#include "transmission.h"
+#include "joint.h"
+#include <pluginlib/class_loader.h>
+#include <tinyxml.h>
+
 namespace ardent_model {
 
     class Robot{
         private: 
+          boost::shared_ptr<pluginlib::ClassLoader<ardent_model::Transmission> > transmission_loader_;
+        public:
             BodyKinematics body;
             std::vector<LegKinematics> legs;
             int num_legs;
-            hardware_interface::HardwareInterface* hw;
-            //std::vector<boost::shared_ptr<Transmission> > transmissions;
-        public:
+            ardent_hardware_interface::HardwareInterface* hw;
+            urdf::Model robot_model_;
+            std::vector<boost::shared_ptr<Transmission> > transmissions_;
+       
             /** 
              * Supporting Library
              * @brief Creates a new robot
@@ -27,6 +36,8 @@ namespace ardent_model {
             Robot(std::vector<std::string> legs_);
             //Robot(TiXmlElement *robot_root, ardent_hardware_interface::HardwareInterface *hw);
             ~Robot(){}
+
+            ardent_hardware_interface::Actuator* getActuator(const std::string &name) const;
 
             void publishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos); //TODO: Change to include pose, vel
 
@@ -72,14 +83,14 @@ namespace ardent_model {
          * Since name lookup is slow, for each transmission in the robot model we
          * cache pointers to the actuators and joints that it connects.
          **/
-        //std::vector<std::vector<hardware_interface::Actuator*> > transmissions_in_;
+        std::vector<std::vector<ardent_hardware_interface::Actuator*> > transmissions_in_;
 
         /**
          * Each transmission refers to the actuators and joints it connects by name.
          * Since name lookup is slow, for each transmission in the robot model we
          * cache pointers to the actuators and joints that it connects.
          **/
-        //std::vector<std::vector<sensor_msgs::JointState*> > transmissions_out_;
+        std::vector<std::vector<sensor_msgs::JointState*> > transmissions_out_;
 
         /// Propagete the actuator positions, through the transmissions, to the joint positions
         void propagateActuatorPositionToJointPosition();

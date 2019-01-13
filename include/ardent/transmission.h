@@ -31,9 +31,9 @@ namespace ardent_model
             virtual void propagateEffortBackwards(std::vector<ardent_hardware_interface::Actuator*>&,
                                                   std::vector<ardent_model::JointState*>&) =0;
             
-            std::string transmission_name;
-            std::vector<std::string> actuator_names;
-            std::vector<std::string> joint_names;
+            std::string name_;
+            std::vector<std::string> actuator_names_;
+            std::vector<std::string> joint_names_;
 
             // initialize transmission from xml data
             virtual bool initXml(TiXmlElement *config) { abort(); }
