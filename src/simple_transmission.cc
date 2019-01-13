@@ -9,6 +9,12 @@ PLUGINLIB_EXPORT_CLASS(ardent_model::SimpleTransmission,
                          ardent_model::Transmission)
 
 
+SimpleTransmission::SimpleTransmission()
+{
+  use_simulated_actuated_joint_=false;
+}
+
+
 bool SimpleTransmission::initXml(TiXmlElement *elt, Robot *robot)
 {
   const char *name = elt->Attribute("name");

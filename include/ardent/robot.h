@@ -19,12 +19,14 @@ namespace ardent_model {
 
     class Robot{
         private: 
-          boost::shared_ptr<pluginlib::ClassLoader<ardent_model::Transmission> > transmission_loader_;
+            boost::shared_ptr<pluginlib::ClassLoader<ardent_model::Transmission> > transmission_loader_;
         public:
-            BodyKinematics body;
-            std::vector<LegKinematics> legs;
-            int num_legs;
-            ardent_hardware_interface::HardwareInterface* hw;
+            BodyKinematics body_;
+            std::vector<LegKinematics> legs_;
+            int num_legs_;
+
+            /// a pointer to the ardent hardware interface. 
+            ardent_hardware_interface::HardwareInterface* hw_;
             urdf::Model robot_model_;
             std::vector<boost::shared_ptr<Transmission> > transmissions_;
        
@@ -33,11 +35,22 @@ namespace ardent_model {
              * @brief Creates a new robot
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
-            Robot(std::vector<std::string> legs_);
-            //Robot(TiXmlElement *robot_root, ardent_hardware_interface::HardwareInterface *hw);
+            Robot(std::vector<std::string> legs,  ardent_hardware_interface::HardwareInterface *hw);
             ~Robot(){}
 
+            /// Initialize the robot model form xml
+            bool initXml(TiXmlElement *root);
+            
+            int getTransmissionIndex(const std::string &name) const;
+
+            /// get an actuator pointer based on the actuator name. Returns NULL on failure
             ardent_hardware_interface::Actuator* getActuator(const std::string &name) const;
+
+            /// get a transmission pointer based on the transmission name. Returns NULL on failure
+            boost::shared_ptr<ardent_model::Transmission> getTransmission(const std::string &name) const;
+
+            /// Get the time when the current controller cycle was started
+            ros::Time getTime();
 
             void publishLegPosition(std::string leg_id, Eigen::Vector3d& ee_pos); //TODO: Change to include pose, vel
 
@@ -59,22 +72,23 @@ namespace ardent_model {
     class RobotState //: public hardware_interface::HardwareInterface
     {
         public:
+
+        std::map<std::string, JointState*> joint_states_map_;
+
         // time since starting the robot 
-        ros::Time current_time;
+        ros::Time current_time_;
         /// constructor
         RobotState(Robot *model);
         /// The robot model containing the transmissions, urdf robot model, and hardware interface
-        Robot *model;
+        Robot *model_;
         
         ros::Time getTime();
         /// The vector of joint states, in no particular order
-        std::vector<sensor_msgs::JointState> joint_states;
+        std::vector<JointState> joint_states_;
         /// Get a joint state by name
-        sensor_msgs::JointState *getJointState(const std::string &name);
+        JointState *getJointState(const std::string &name);
         /// Get a const joint state by name
-        //const sensor_msgs::JointState *getJointState(const std::string &name) const;
-
-        std::map<std::string, sensor_msgs::JointState*> joint_states_map_;
+        const JointState *getJointState(const std::string &name) const;
 
         /// Get the time when the current controller cycle was started
         // ros::Time getTime() {return model_->getTime();};
@@ -90,7 +104,7 @@ namespace ardent_model {
          * Since name lookup is slow, for each transmission in the robot model we
          * cache pointers to the actuators and joints that it connects.
          **/
-        std::vector<std::vector<sensor_msgs::JointState*> > transmissions_out_;
+        std::vector<std::vector<ardent_model::JointState*> > transmissions_out_;
 
         /// Propagete the actuator positions, through the transmissions, to the joint positions
         void propagateActuatorPositionToJointPosition();

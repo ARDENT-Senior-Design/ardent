@@ -9,38 +9,39 @@
 #include <pluginlib/class_list_macros.h>
 //#include "ardent_model/joint_calibration_simulator.h"
 
-namespace ardent_model {
-
-class SimpleTransmission : public Transmission
+namespace ardent_model 
 {
-  public:
-    SimpleTransmission() {use_simulated_actuated_joint_=true;}
-    ~SimpleTransmission() {}
 
-    bool initXml(TiXmlElement *config, Robot *robot);
-    bool initXml(TiXmlElement *config);
+  class SimpleTransmission : public Transmission
+  {
+    public:
+      SimpleTransmission();
+      ~SimpleTransmission() {}
 
-    double mechanical_reduction_;
+      bool initXml(TiXmlElement *config, Robot *robot);
+      bool initXml(TiXmlElement *config);
 
-    void propagatePosition(std::vector<ardent_hardware_interface::Actuator*>&,
-                          std::vector<ardent_model::JointState*>&);
-    void propagatePositionBackwards(std::vector<ardent_model::JointState*>&,
-                                    std::vector<ardent_hardware_interface::Actuator*>&);
-    void propagateEffort(std::vector<ardent_model::JointState*>&,
-                        std::vector<ardent_hardware_interface::Actuator*>&);
-    void propagateEffortBackwards(std::vector<ardent_hardware_interface::Actuator*>&,
-                                  std::vector<ardent_model::JointState*>&);
+      double mechanical_reduction_;
 
-  private:
-    // if a actuated_joint is specified, apply torque based on simulated_reduction_
-    double simulated_reduction_;
-    bool use_simulated_actuated_joint_;
+      void propagatePosition(std::vector<ardent_hardware_interface::Actuator*>&,
+                         std::vector<ardent_model::JointState*>&);
+      void propagatePositionBackwards(std::vector<ardent_model::JointState*>&,
+                                      std::vector<ardent_hardware_interface::Actuator*>&);
+      void propagateEffort(std::vector<ardent_model::JointState*>&,
+                          std::vector<ardent_hardware_interface::Actuator*>&);
+      void propagateEffortBackwards(std::vector<ardent_hardware_interface::Actuator*>&,
+                                std::vector<ardent_model::JointState*>&);
 
-    int simulated_actuator_timestamp_initialized_;
-    ros::Time simulated_actuator_start_time_;
+    private:
+      // if a actuated_joint is specified, apply torque based on simulated_reduction_
+      double simulated_reduction_;
+      bool use_simulated_actuated_joint_;
 
-    //JointCalibrationSimulator joint_calibration_simulator_;
-  };
+      int simulated_actuator_timestamp_initialized_;
+      ros::Time simulated_actuator_start_time_;
+
+      //JointCalibrationSimulator joint_calibration_simulator_;
+    };
 }
 
 #endif

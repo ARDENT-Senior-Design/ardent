@@ -24,14 +24,16 @@ find_package(TinyXML REQUIRED)
 find_package(urdfdom REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(gazebo REQUIRED)
+find_package(PkgConfig)
 
-generate_messages(DEPENDENCIES actionlib_msgs)
+# generate_messages(DEPENDENCIES actionlib_msgs)
 include_directories(
   ${EIGEN3_INCLUDE_DIR}
   ${catkin_INCLUDE_DIRS}
   ${gazebo_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
   ${PROJECT_NAME}
+  ${urdfdom_INCLUDE_DIRS}
 )
 
 link_directories(${gazebo_LIBRARY} ${EIGEN3_INCLUDE_DIR})
@@ -43,7 +45,8 @@ set(LIB_SOURCES
     src/leg_kinematics.cc
     src/body_kinematics.cc
     src/hardware_interface.cc
-    src/simple_transmission.cc)
+    src/simple_transmission.cc
+    src/joint.cpp)
 
 add_library(${PROJECT_NAME} ${LIB_SOURCES})
 
@@ -65,13 +68,10 @@ catkin_package(
     urdfdom
 )
 
-
 add_executable(walking_test test/walking_test.cc)
 target_link_libraries(walking_test ${catkin_LIBRARIES} ${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME}  ltdl ${Boost_LIBRARIES}
-${catkin_LIBRARIES})
-
+target_link_libraries(${PROJECT_NAME}  ltdl ${Boost_LIBRARIES} ${catkin_LIBRARIES})
 
 install(DIRECTORY include/${PROJECT_NAME}/
 DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
