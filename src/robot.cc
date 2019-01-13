@@ -3,8 +3,9 @@
 using namespace ardent_model;
 using namespace ardent_hardware_interface;
 
-Robot::Robot(std::vector<std::string> legs, HardwareInterface *hw) : hw_(hw)
+Robot::Robot(HardwareInterface *hw) : hw_(hw)
 {
+    std::vector<std::string> legs= {"rf","rm","rr","lf","lm","lr"};
     num_legs_ = legs.size();
     
     for(int i=0;i<legs.size();i++){

@@ -35,7 +35,7 @@ namespace ardent_model {
              * @brief Creates a new robot
              * @param legs_ an array of the legs that will be added to the robot in order of right/left (r/l) and front (f), mid(m), and rear(r)
              */
-            Robot(std::vector<std::string> legs,  ardent_hardware_interface::HardwareInterface *hw);
+            Robot(ardent_hardware_interface::HardwareInterface *hw);
             ~Robot(){}
 
             /// Initialize the robot model form xml
@@ -69,7 +69,7 @@ namespace ardent_model {
      * Some specialized controllers (such as the calibration controllers) can get access
      * to actuator states, and transmission states.
      */
-    class RobotState //: public hardware_interface::HardwareInterface
+    class RobotState : public hardware_interface::HardwareInterface
     {
         public:
 
@@ -81,7 +81,6 @@ namespace ardent_model {
         RobotState(Robot *model);
         /// The robot model containing the transmissions, urdf robot model, and hardware interface
         Robot *model_;
-        
         ros::Time getTime();
         /// The vector of joint states, in no particular order
         std::vector<JointState> joint_states_;
