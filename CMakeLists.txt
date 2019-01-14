@@ -26,6 +26,11 @@ find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(gazebo REQUIRED)
 find_package(PkgConfig)
 
+pkg_check_modules(URDFDOM REQUIRED urdfdom)
+if ("${URDFDOM_VERSION}" VERSION_EQUAL "1.0.0" OR "${URDFDOM_VERSION}" VERSION_GREATER "1.0.0")
+  add_definitions(-DURDFDOM_1_0_0_API)
+endif()
+
 # generate_messages(DEPENDENCIES actionlib_msgs)
 include_directories(
   ${EIGEN3_INCLUDE_DIR}
@@ -72,6 +77,7 @@ add_executable(walking_test test/walking_test.cc)
 target_link_libraries(walking_test ${catkin_LIBRARIES} ${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME}  ltdl ${Boost_LIBRARIES} ${catkin_LIBRARIES})
+
 
 install(DIRECTORY include/${PROJECT_NAME}/
 DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}

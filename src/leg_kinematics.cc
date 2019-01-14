@@ -11,8 +11,8 @@ LegKinematics::LegKinematics(std::string new_leg_id, double body_radius)
     joint_names.push_back("j_femur_");
     joint_names.push_back("j_tibia_");
     coxa_pub = nh.advertise<std_msgs::Float64>("/"+joint_names[0]+leg_id+"_position_controller/command",1000);
-    femur_pub = nh.advertise<std_msgs::Float64>("/j_femur_"+joint_names[1]+leg_id+"_position_controller/command",1000);
-    tibia_pub = nh.advertise<std_msgs::Float64>("/j"+joint_names[2]+leg_id+"_position_controller/command",1000);
+    femur_pub = nh.advertise<std_msgs::Float64>("/"+joint_names[1]+leg_id+"_position_controller/command",1000);
+    tibia_pub = nh.advertise<std_msgs::Float64>("/"+joint_names[2]+leg_id+"_position_controller/command",1000);
     contact_state_pub = nh.advertise<std_msgs::Bool>("/"+leg_id+"_contact/state",1000);
 }
 

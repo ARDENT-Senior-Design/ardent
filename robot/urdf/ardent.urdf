@@ -236,22 +236,37 @@
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint> -->
-  <transmission name="t_coxa_rf" type="ardent_model/SimpleTransmission">
-    <joint name="j_coxa_rf"/>
-    <actuator name="j_coxa_rf_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_coxa_rf">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_coxa_rf">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_coxa_rf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_femur_rf" type="ardent_model/SimpleTransmission">
-    <joint name="j_femur_rf"/>
-    <actuator name="j_femur_rf_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_femur_rf">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_femur_rf">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_femur_rf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_tibia_rf" type="ardent_model/SimpleTransmission">
-    <joint name="j_tibia_rf"/>
-    <actuator name="j_tibia_rf_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_tibia_rf">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_tibia_rf">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_tibia_rf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
   <!-- <transmission name="t_coxa_${suffix}">
@@ -491,22 +506,37 @@
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint> -->
-  <transmission name="t_coxa_rm" type="ardent_model/SimpleTransmission">
-    <joint name="j_coxa_rm"/>
-    <actuator name="j_coxa_rm_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_coxa_rm">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_coxa_rm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_coxa_rm_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_femur_rm" type="ardent_model/SimpleTransmission">
-    <joint name="j_femur_rm"/>
-    <actuator name="j_femur_rm_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_femur_rm">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_femur_rm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_femur_rm_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_tibia_rm" type="ardent_model/SimpleTransmission">
-    <joint name="j_tibia_rm"/>
-    <actuator name="j_tibia_rm_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_tibia_rm">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_tibia_rm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_tibia_rm_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
   <!-- <transmission name="t_coxa_${suffix}">
@@ -746,22 +776,37 @@
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint> -->
-  <transmission name="t_coxa_rr" type="ardent_model/SimpleTransmission">
-    <joint name="j_coxa_rr"/>
-    <actuator name="j_coxa_rr_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_coxa_rr">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_coxa_rr">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_coxa_rr_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_femur_rr" type="ardent_model/SimpleTransmission">
-    <joint name="j_femur_rr"/>
-    <actuator name="j_femur_rr_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_femur_rr">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_femur_rr">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_femur_rr_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_tibia_rr" type="ardent_model/SimpleTransmission">
-    <joint name="j_tibia_rr"/>
-    <actuator name="j_tibia_rr_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_tibia_rr">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_tibia_rr">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_tibia_rr_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
   <!-- <transmission name="t_coxa_${suffix}">
@@ -1001,22 +1046,37 @@
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint> -->
-  <transmission name="t_coxa_lf" type="ardent_model/SimpleTransmission">
-    <joint name="j_coxa_lf"/>
-    <actuator name="j_coxa_lf_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_coxa_lf">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_coxa_lf">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_coxa_lf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_femur_lf" type="ardent_model/SimpleTransmission">
-    <joint name="j_femur_lf"/>
-    <actuator name="j_femur_lf_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_femur_lf">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_femur_lf">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_femur_lf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_tibia_lf" type="ardent_model/SimpleTransmission">
-    <joint name="j_tibia_lf"/>
-    <actuator name="j_tibia_lf_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_tibia_lf">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_tibia_lf">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_tibia_lf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
   <!-- <transmission name="t_coxa_${suffix}">
@@ -1256,22 +1316,37 @@
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint> -->
-  <transmission name="t_coxa_lm" type="ardent_model/SimpleTransmission">
-    <joint name="j_coxa_lm"/>
-    <actuator name="j_coxa_lm_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_coxa_lm">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_coxa_lm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_coxa_lm_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_femur_lm" type="ardent_model/SimpleTransmission">
-    <joint name="j_femur_lm"/>
-    <actuator name="j_femur_lm_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_femur_lm">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_femur_lm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_femur_lm_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_tibia_lm" type="ardent_model/SimpleTransmission">
-    <joint name="j_tibia_lm"/>
-    <actuator name="j_tibia_lm_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_tibia_lm">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_tibia_lm">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_tibia_lm_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
   <!-- <transmission name="t_coxa_${suffix}">
@@ -1511,22 +1586,37 @@
     <axis xyz="1 0 0" />
     <limit effort="2.8" velocity="5.6548668" lower="-2.6179939" upper="2.6179939" />
   </joint> -->
-  <transmission name="t_coxa_lr" type="ardent_model/SimpleTransmission">
-    <joint name="j_coxa_lr"/>
-    <actuator name="j_coxa_lr_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_coxa_lr">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_coxa_lr">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_coxa_lr_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_femur_lr" type="ardent_model/SimpleTransmission">
-    <joint name="j_femur_lr"/>
-    <actuator name="j_femur_lr_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_femur_lr">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_femur_lr">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_femur_lr_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
-  <transmission name="t_tibia_lr" type="ardent_model/SimpleTransmission">
-    <joint name="j_tibia_lr"/>
-    <actuator name="j_tibia_lr_motor"/>
-    <mechanicalReduction>1</mechanicalReduction>
+  <transmission name="t_tibia_lr">
+    <type>ardent/SimpleTransmission</type>
+    <joint name="j_tibia_lr">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j_tibia_lr_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
     <!-- <compensator k_belt="4000.0" mass_motor="0.05" kd_motor="15.0" lambda_motor="40.0" lambda_joint="40.0" lambda_combined="0.0"/> -->
   </transmission>
   <!-- <transmission name="t_coxa_${suffix}">
